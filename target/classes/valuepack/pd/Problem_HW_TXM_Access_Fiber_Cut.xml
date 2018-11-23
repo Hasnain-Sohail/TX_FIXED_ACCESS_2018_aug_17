@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filters xmlns="http://hp.com/uca/expert/filter">
+	<!-- ,ProblemAlarm.Creation.AdditionalText=${Trigger.mapper.retrievePrefixATBeforeNATIVE_CAUSE}${Trigger.mapper.retrieveNewNATIVE_CAUSE_HW_FC}${Trigger.mapper.retrieveSuffixATAfterNATIVE_CAUSE} -->
+	<topFilter name="Problem_HW_TXM_Access_Fiber_Cut" 
+		tagsGroup="ProblemDetection,AvailableTroubleTickets">
+		<anyCondition>
+			<anyCondition tag="PATTERN_Triggers">
+				<!-- PE will be calculated in the Java code -->
+				<anyCondition
+					tag="Trigger,SubAlarm																								
+	                ,ProblemAlarm.Creation.ReferenceAlarm=Trigger
+	                ,Customized.defaultFC=NOC.FO.NATIONAL.TXM
+	                ,Customized.defaultAlarmClassification=Non-Outage
+	                ,Customized.Mapper.AEnd_From=retrieveHWAEndFrom
+	                ,Customized.Mapper.ZEnd_To=retrieveHWZEndTo
+	                ,ProblemAlarm.Creation.Other.Attributes=Alarm_Name/retrieveNewNATIVE_CAUSE_HW_FC	                
+	                ,ProblemAlarm.Creation.AdditionalText=${Trigger.mapper.retrieveAll_Addt}
+	                ,ProblemAlarm.Clearance.Condition=TriggersAreClearedOrTerminated
+					,ProblemAlarm.Termination.Policy=ToAll          	               	              				              	               	              				               
+	                ">
+	                <allCondition>
+						<!-- In case of Outage -->
+						<anyCondition>
+							<notCondition>
+								<isPresentFilterStatement>
+									<fieldName>changeId</fieldName>
+								</isPresentFilterStatement>
+							</notCondition>
+							<notCondition>
+								<stringFilterStatement>
+									<fieldName>changeId</fieldName>
+									<operator>matches</operator>
+									<fieldValue>\S+</fieldValue>
+								</stringFilterStatement>
+							</notCondition>
+						</anyCondition>	
+                                    
+                        <stringFilterStatement>
+	                		<fieldName>additionalText</fieldName>
+	                		<operator>matches</operator>
+	                		<fieldValue>([\d\D]*)(171024605|171024610|1611735047|772874247|170983457)([\d\D]*)</fieldValue>
+	                	</stringFilterStatement>
+	                	
+	                	<stringFilterStatement>
+	                		<fieldName>additionalText</fieldName>
+	                		<operator>doesNotContain</operator>
+	                		<fieldValue>TEST</fieldValue>
+	                	</stringFilterStatement>
+	                	
+	                	<stringFilterStatement>
+	                		<fieldName>additionalText</fieldName>
+	                		<operator>doesNotContain</operator>
+	                		<fieldValue>NLOD</fieldValue>
+	                	</stringFilterStatement>
+	                	      	
+	                	<stringFilterStatement>
+	                		<fieldName>additionalText</fieldName>
+	                		<operator>doesNotContain</operator>
+	                		<fieldValue>@ZEnd=@</fieldValue>
+	                	</stringFilterStatement>
+	                	
+	                	<stringFilterStatement>
+	                		<fieldName>additionalText</fieldName>
+	                		<operator>contains</operator>
+	                		<fieldValue>@AEnd</fieldValue>
+	                	</stringFilterStatement>
+	                	
+	                	<anyCondition>
+	                		<stringFilterStatement>
+                				<fieldName>originatingManagedEntity</fieldName>
+                				<operator>matches</operator>
+                				<fieldValue>(?i)[\d\D]*U2000_Islamabad_02[\d\D]*</fieldValue>
+                			</stringFilterStatement>
+                			<stringFilterStatement>
+                				<fieldName>originatingManagedEntity</fieldName>
+                				<operator>matches</operator>
+                				<fieldValue>(?i)[\d\D]*OSI_SYSTEM[\d\D]*</fieldValue>
+                			</stringFilterStatement>
+	                	</anyCondition>
+	                	
+	                	<notCondition>
+							<stringFilterStatement>
+								<fieldName>userText</fieldName>
+								<operator>matches</operator>
+								<fieldValue><![CDATA[(?s).*<action>UCA EBC .*</action><trigger>.*</trigger><group>.*</group>.*]]></fieldValue>
+							</stringFilterStatement>
+						</notCondition>
+	                </allCondition>
+	           </anyCondition>
+			</anyCondition>
+			
+			<anyCondition tag="PATTERN_ProblemAlarms">
+				<anyCondition tag="ProblemAlarm">
+					<allCondition>
+						<stringFilterStatement>
+							<fieldName>userText</fieldName>
+							<operator>matches</operator>
+							<fieldValue><![CDATA[(?s).*<trigger>.*</trigger><group><p>Problem_HW_TXM_Access_Fiber_Cut</p>.*</group>.*]]></fieldValue>
+						</stringFilterStatement>
+					</allCondition>
+				</anyCondition>
+			</anyCondition>
+			
+			
+		</anyCondition>
+		</topFilter>
+</filters>

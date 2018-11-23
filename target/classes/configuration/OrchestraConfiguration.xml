@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OrchestraWorkflow xmlns="http://hp.com/uca/expert/orchestra/config">
+<!-- Orchestra Workflow example with the following routes: -->
+<!-- assuming only scenario1 in VP1 and scenario1 in VP2 are eligible to  -->
+<!-- 	broadcast -->
+<!-- <Routes>tag is optional and can contain 1 to many <Route> tags		 -->
+<!-- <Route> tag has an name(optional) and can be of type <COPY> or <JOIN> -->
+<!-- <COPY> tag allows one to many destinations	 -->
+<!-- <JOIN> tag is used for JOIN routes and has an extra mandatory  -->
+<!-- inner tag <ExpireTime> which is the time to wait at maximum for the convergence  -->
+<!-- of an event. The ExpireTime is expressed in milliseconds. JOIN routes allows  -->
+<!-- multiple sources to one convergence destination  -->
+<!-- <Source> tag identifies a source scenario by its name, value pack name and version -->
+<!-- <Destination> tag containes optionally a filterName tag for a filter defined in OrchestraFilters.xml file -->
+<!-- and a target scenario indentified by its name, value pack name and version -->
+
+<!-- Here there are: 1 route to copy from one scenario (scenario1 from VP1) -->
+<!-- to other 2 scenarios (scenario2 and scenario3 from VP1) -->
+<!-- 1 route to join (converge) the events from 3 scenarios (scenario2 and -->
+<!-- 	scenario3 from VP1 and scenario1 from VP2) -->
+<!-- into one event to send to another scenario (scenario4 in VP1) -->
+
+<!-- To use the applyOrchestration in your scenarios, -->
+<!-- uncomment the following routes and replace with your scenarios. You -->
+<!-- 		can also delete/add routes or directly modify it in the GUI -->
+
+
+<!-- 	<Routes>        -->
+<!-- 		<Route name="Copy from scenario1 from VP1 to scenario2 and scenario3 from VP1 "> -->
+<!-- 			<COPY> -->
+<!-- 				<Source> -->
+<!-- 					<ValuePackNameVersion>VP1-1.0</ValuePackNameVersion>              -->
+<!-- 					<ScenarioName>scenario1</ScenarioName>				 -->
+<!-- 				</Source> -->
+<!-- 				<Destinations> -->
+<!-- 					<Destination> -->
+<!-- 						 <Target> -->
+<!--                             <ValuePackNameVersion>VP1-1.0</ValuePackNameVersion> -->
+<!--                             <ScenarioName>scenario2</ScenarioName> -->
+<!--                         </Target>										 -->
+<!-- 					</Destination> -->
+<!-- 					<Destination> -->
+<!-- 						 <Target> -->
+<!--                             <ValuePackNameVersion>VP1-1.0</ValuePackNameVersion> -->
+<!--                             <ScenarioName>scenario3</ScenarioName> -->
+<!--                         </Target>					 -->
+<!-- 					</Destination> -->
+<!-- 				</Destinations> -->
+<!-- 			</COPY> -->
+<!-- 		</Route> -->
+<!-- 		<Route name="Join scenario2 to scenario3 from VP1 and scenario1 from VP2 to scenario4 in VP1 waiting maximum 1000 milliseconds and if passing the filter Orchestra-accept-all"> -->
+<!-- 			<JOIN> -->
+<!--                 <Sources> -->
+<!--                     <Source> -->
+<!-- 						<ValuePackNameVersion>VP1-1.0</ValuePackNameVersion>              -->
+<!-- 						<ScenarioName>scenario2</ScenarioName>				 -->
+<!-- 					</Source> -->
+<!-- 					<Source> -->
+<!-- 						<ValuePackNameVersion>VP1-1.0</ValuePackNameVersion>              -->
+<!-- 						<ScenarioName>scenario3</ScenarioName>				 -->
+<!-- 					</Source> -->
+<!-- 					<Source> -->
+<!-- 						<ValuePackNameVersion>VP2-1.0</ValuePackNameVersion>              -->
+<!-- 						<ScenarioName>scenario1</ScenarioName>				 -->
+<!-- 					</Source>					 -->
+<!-- 				</Sources> -->
+<!-- 				<ExpireTime>1000</ExpireTime> -->
+<!-- 				<Destination> -->
+<!-- 					<Filter> -->
+<!-- 						<filterName>Orchestra-accept-all</filterName> -->
+<!-- 					</Filter> -->
+<!-- 					<Target> -->
+<!--                        <ValuePackNameVersion>VP1-1.0</ValuePackNameVersion> -->
+<!--                        <ScenarioName>scenario4</ScenarioName> -->
+<!--                     </Target>					 -->
+<!-- 				</Destination> -->
+<!-- 			</JOIN> -->
+<!-- 		</Route> -->
+<!-- 	</Routes> -->
+</OrchestraWorkflow>

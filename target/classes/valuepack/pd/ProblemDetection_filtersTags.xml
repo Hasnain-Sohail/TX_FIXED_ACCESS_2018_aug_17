@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tags xmlns="http://hp.com/uca/expert/filter/tags" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<groups>
+		<group name="Dummy">
+<!-- Since V3.4, this file is deprecated and replaced by annotations in the code itself 	
+			<simpleTags>
+			</simpleTags>
+			<paramTags>
+			</paramTags>
+ -->		
+ 		</group>
+	</groups>  
+</tags>

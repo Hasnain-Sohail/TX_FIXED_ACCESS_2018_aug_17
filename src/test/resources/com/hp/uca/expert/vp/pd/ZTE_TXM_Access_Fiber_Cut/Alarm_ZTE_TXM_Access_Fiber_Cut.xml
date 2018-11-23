@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uca:Alarms xmlns:uca="http://hp.com/uca/expert/x733Alarm"
+	xmlns="http://hp.com/uca/expert/x733Alarm">
+	<AlarmCreationInterface xmlns="http://hp.com/uca/expert/x733Alarm">
+		<!-- HTML escape character  &lt; &gt;&amp;&quot;&copy;
+	                           map:  <，  >，  &，   "，      ©; 
+	                           e.g.  <ALM_ID>=&lt;ALM_ID&gt; -->
+		<identifier>OPERATION_CONTEXT ihvtfs01_ns:.Nat_Tx_Huawei alarm_object 11011460</identifier>
+		<sourceIdentifier>TeMIP EMS</sourceIdentifier>
+		<!-- <originatingManagedEntity>/ZTE_E300_SYS /HW_T2000_Sys ihvtfs01_ns:.U2000_Islamabad_02 Managed_Element "3145891"</originatingManagedEntity> -->
+		<originatingManagedEntity>U31_Islamabad_04 ihvtfs01_ns:.E300_Rawalpindi_04 Managed_Element "47(P)" PTP</originatingManagedEntity>
+		<alarmType>EQUIPMENT_ALARM</alarmType>
+		<probableCause>EquipmentMalfunction</probableCause>
+		<perceivedSeverity>CRITICAL</perceivedSeverity>		
+		<networkState>NOT_CLEARED</networkState>
+		<operatorState>NOT_ACKNOWLEDGED</operatorState>
+		<problemState>NOT_HANDLED</problemState>
+		<problemInformation></problemInformation>
+		<additionalInformation></additionalInformation>
+		<additionalText><![CDATA["@FC=FC.TXM.LTR.TWSP@Outage_Flag=@NE_Name=10.139.97.198-LTR-FerozPur-Road-OLT-01:b@USER=:a
+                                          dd:@TEMIP_DIRECTOR=TARGET@CAT_SM=Platinum@NE_Vendor=ZTE@Region=LTR@Priority_SM=50@NW_CLASS
+                                          =Transport@sm_liaison_end 
+                                          @AEnd=U31_Islamabad_04;10.139.97.200-LTR-FerozPur-Road-OLT-01,RACK=1,SHELF=1,SLOT=20,PORT=4
+                                          @ZEnd=U31_Islamabad_04;10.139.97.200-LTR-Jinnai-Ave-OLT-01,RACK=1,SHELF=1,SLOT=20,PORT=4@SERVICE= 
+                                          Uplink Port Down .  
+                                          VARIABLES: 
+                                          systemDN=DC=www.zte.com.cn,Network=ZTE_SYSTEM,ManagementNode=EMS,IRPAgent=1 
+                                          sendNotificationId=26468409 
+                                          lastSendNotificationId=26468405 
+                                          alarmEventTime=2018-11-1,17:43:10.0,+5:0 
+                                          alarmCode=40713 
+                                          alarmManagedObjectInstance=TIME1521190542244,an_rack=1,an_shelf=1,an_slot=20,an_port=4, 
+                                          alarmEventType=communicationsAlarm 
+                                          alarmProbableCause=indeterminate 
+                                          alarmPerceivedSeverity=critical 
+                                          alarmSpecificProblem=Uplink port down 
+                                          alarmAdditionalText= 
+                                          alarmNetype=C300Mv4 
+                                          alarmIndex=33387 
+                                          alarmId=IP Address:10.139.97.198|10711909 
+                                          alarmCodeName=Uplink Port Down 
+                                          alarmManagedObjectInstanceName=10.139.97.198-LTR-FerozPur-Road-OLT-01,RACK=1,SHELF=1,SLOT=
+                                          20,PORT=4 
+                                          alarmSystemType=756 
+                                          alarmNeIP=10.139.97.198 
+                                          alarmAck=unAcKnowledged 
+                                          cleiCode= 
+                                          timeZoneID=Asia/Karachi 
+                                          timeZoneOffset=18000000 
+                                          dSTSaving=0 
+                                          aid=10711909 
+                                          id=1540845672640 
+                                          alarmMocObjectInstance=10.139.97.198-LTR-FerozPur-Road-OLT-01 
+                                          alarmComment= 
+                                          alarmOtherInfo= 
+                                          id32= 
+                                          serviceID= 
+                                          serviceDisplayName= 
+                                          alarmCustomAttr1= 
+                                          alarmCustomAttr2= 
+                                          alarmCustomAttr3= 
+                                          alarmCustomAttr4= 
+                                          alarmCustomAttr5= 
+                                          alarmCustomAttr6= 
+                                          alarmCustomAttr7= 
+                                          alarmCustomAttr8= 
+                                          alarmCustomAttr9= 
+                                          alarmCustomAttr10= 
+                                          A alarmNew was received from 116.71.241.227 at 23586626. 
+                                          <ALM_ID>33387<ALM_ID>@FRIENDLY_NAME=U31_Islamabad_04;10.139.97.198-LTR-FerozPur-Road-OLT-0
+                                          1@NATIVE_CAUSE=Uplink Port Down+++"]]></additionalText>
+
+		<customFields>			
+			<customField name="alarmName" value="Uplink Port Down" />
+			<customField name="fc" value=".new" />
+			<!--<customField name="userText" value="&lt;action&gt;UCA EBC Action Id [4292816651256077069]&lt;/action&gt;&lt;trigger&gt;operation_context oc.nscgsmhw_raw alarm_object h16&lt;/trigger&gt;&lt;group&gt;&lt;p&gt;PROBLEM_IP_MPLS&lt;/p&gt;&lt;e&gt;mebj96cgn01-fpc-10&lt;/e&gt;&lt;/group&gt;" />-->
+		</customFields>
+	</AlarmCreationInterface>
+		
+</uca:Alarms>

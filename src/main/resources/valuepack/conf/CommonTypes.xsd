@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2016 rel. 2 (x64) (http://www.altova.com) by Anzile (Hewlett Packard Enterprise Com) -->
+<!-- we do not use ns as http://config.im.vp.expert.uca.hp.com/ for PD 
+	backward compatibility only -->
+<!-- we want to keep old ProblemXmlConfig.xml files as they were in 3.1 -->
+<xs:schema xmlns="http://config.im.vp.expert.uca.hp.com/" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://config.im.vp.expert.uca.hp.com/" elementFormDefault="qualified" jxb:version="2.0">
+	<xs:complexType name="Actions">
+		<xs:sequence>
+			<xs:element name="defaultActionScriptReference" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="action" type="Action" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="default" type="xs:string" use="optional"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of Supported Actions Factories">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_default" type="xs:string" use="optional" fixed="When an action cannot be chosen (e.g. when sourceIdentifier is null), this gives the default action to use.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_defaultActionScriptReference" type="xs:string" use="optional" fixed="Unique Action reference (see ActionRegistry configuration) defining the routing information of a script-based Action. See Exec Channel Adapter.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__dynamicList_defaultActionScriptReference" type="xs:string" use="optional" fixed="actionReferenceList">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Action">
+		<xs:all>
+			<xs:element name="actionReference" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="UMBActionReferences" type="UMBActionReferences" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="actionClass" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="attributeUsedForKeyDuringRecognition" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="attributeUsedForKeyPbAlarmCreation" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="attributesMapping" type="KeyValues" minOccurs="0"/>
+			<xs:element name="booleans" type="Booleans" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="strings" type="Strings" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="longs" type="Longs" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Container for attributes defining the actions for a set of alarms.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_name" type="xs:string" use="optional" fixed="Name of the Action container. Usually matches the 'sourceIdentifier' field of alarms.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_actionReference" type="xs:string" use="optional" fixed="Unique Action reference (see ActionRegistry configuration) defining the routing information of an Action">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__dynamicList_actionReference" type="xs:string" use="optional" fixed="actionReferenceList">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_actionClass" type="xs:string" use="optional" fixed="The class implementing the SupportedAction interface which describes the methods needed to support any Action on alarms.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_attributeUsedForKeyDuringRecognition" type="xs:string" use="optional" fixed="The Custom Field Name of the Alarm containing the information to identify that a MasterAlarm is generated by the Problem Detection Framework.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_attributeUsedForKeyPbAlarmCreation" type="xs:string" use="optional" fixed="The Custom Field of the MasterAlarm that will contain information about the problem, as seen from the Network Management System. Used as argument during MasterAlarm creation.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_attributesMapping" type="xs:string" use="optional" fixed="The mappings to use to translate internal alarm attribute (key) into/from external action attribute (value).">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TroubleTicketActions">
+		<xs:sequence>
+			<xs:element name="troubleTicketAction" type="TroubleTicketAction" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="default" type="xs:string" use="optional"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of Supported Trouble Ticket Actions Factories">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_default" type="xs:string" use="optional" fixed="When a TT action cannot be chosen (e.g. no TT tag specified in filters), this gives the default TT action to use.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TroubleTicketAction">
+		<xs:all>
+			<xs:element name="actionReference" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="UMBActionReferences" type="UMBActionReferences" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="actionClass" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="booleans" type="Booleans" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="strings" type="Strings" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="longs" type="Longs" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Container for attributes defining the trouble ticket actions for a set of alarms">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_name" type="xs:string" use="optional" fixed="Name of the Action container. Usually matches the Filter Tag defined in the Filter Configuration.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_actionReference" type="xs:string" use="optional" fixed="Unique Action reference (see ActionRegistry configuration) defining the routing information of a Trouble Ticket Action">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_actionClass" type="xs:string" use="optional" fixed="The class implementing the SupportedTroubleTicketActions interface which describes the methods needed to support any Action on alarms.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Booleans">
+		<xs:sequence>
+			<xs:element name="boolean" type="booleanItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of Boolean parameters used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="booleanItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string" use="required"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Boolean parameter used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_key" type="xs:string" use="optional" fixed="Information used to retrieve this parameter from scenario customization code.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_value" type="xs:string" use="optional" fixed="Value of this parameter. Automatically converted as Boolean java class instance.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Strings">
+		<xs:sequence>
+			<xs:element name="string" type="StringItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of String parameters used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="StringItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string" use="required"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="String parameter used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_key" type="xs:string" use="optional" fixed="Information used to retrieve this parameter from scenario customization code.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_value" type="xs:string" use="optional" fixed="Value of this parameter. Automatically converted as String java class instance.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Longs">
+		<xs:sequence>
+			<xs:element name="long" type="LongItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of Long parameters used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="LongItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:long" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="key" type="xs:string" use="required"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Long parameter used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_key" type="xs:string" use="optional" fixed="Information used to retrieve this parameter from scenario customization code.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_value" type="xs:string" use="optional" fixed="Value of this parameter. Automatically converted as Long java class instance.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Tags">
+		<xs:sequence>
+			<xs:element name="tag" type="TagItem" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of default tags used by scenario.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_tag" type="xs:string" use="optional" fixed="A default tag. Can be a simple tag or a param tag.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="TagItem">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required"/>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Tag used during the scenario processing.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_name" type="xs:string" use="optional" fixed="Tag name.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_value" type="xs:string" use="optional" fixed="When set, it defines the value of the param tag. When not set, it defines a simple tag.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="CounterTotalNumberAlarms">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Current"/>
+			<xs:enumeration value="All"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="TroubleTicket">
+		<xs:sequence>
+			<xs:element name="automaticTroubleTicketCreation" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="propagateTroubleTicketToSubAlarms" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="propagateTroubleTicketToMasterAlarm" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="delayForTroubleTicketCreation" type="xs:long" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of Trouble Ticket feature">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_automaticTroubleTicketCreation" type="xs:string" use="optional" fixed="Automates the creation of a trouble ticket once a MasterAlarm is created.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__default_automaticTroubleTicketCreation" type="xs:string" use="optional" fixed="false">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_propagateTroubleTicketToSubAlarms" type="xs:string" use="optional" fixed="All SubAlarms (of the MasterAlarm), are associated to the trouble ticket linked with the MasterAlarm.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__default_propagateTroubleTicketToSubAlarms" type="xs:string" use="optional" fixed="false">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_propagateTroubleTicketToMasterAlarm" type="xs:string" use="optional" fixed="If one SubAlarm has a trouble ticket, the MasterAlarm will be linked to this trouble ticket.
+">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__default_propagateTroubleTicketToMasterAlarm" type="xs:string" use="optional" fixed="false">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_delayForTroubleTicketCreation" type="xs:string" use="optional" fixed="Delay after the creation of a Problem Alarm, before the associated trouble ticket is created. Value is in millisecond.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__default_delayForTroubleTicketCreation" type="xs:string" use="optional" fixed="10000">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="UMBActionReferences">
+		<xs:all>
+			<xs:element name="UMBactionReferenceAcknowledge" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceClear" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceCreate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceTerminate" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceUnacknowledge" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceGroup" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceUngroup" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceSetGenericAttribute" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceSetHistoryNavigation" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBTroubleTicketActionReferenceCreateTT" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBTroubleTicketActionReferenceCloseTT" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBTroubleTicketActionReferenceAssociateTT" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBTroubleTicketActionReferenceDissociateTT" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBTroubleTicketActionReferenceSetGenericAttribute" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceDelete" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceHandle" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceRelease" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="UMBactionReferenceClose" type="xs:string" minOccurs="0" maxOccurs="1"/>
+		</xs:all>
+		<xs:attribute name="__tooltip_UMBactionReferenceAcknowledge" type="xs:string" use="optional" fixed="Name of the actionReference of the {Acknowledge Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceClear" type="xs:string" use="optional" fixed="Name of the actionReference of the {Clear Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceCreate" type="xs:string" use="optional" fixed="Name of the actionReference of the {Create Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceTerminate" type="xs:string" use="optional" fixed="Name of the actionReference of the {Terminate Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceUnacknowledge" type="xs:string" use="optional" fixed="Name of the actionReference of the {Unacknowledge Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceGroup" type="xs:string" use="optional" fixed="Name of the actionReference of the {Group Alarms} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceUngroup" type="xs:string" use="optional" fixed="Name of the actionReference of the {Ungroup Alarms} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceSetGenericAttribute" type="xs:string" use="optional" fixed="Name of the actionReference of the {Set Generic Attribute} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceSetHistoryNavigation" type="xs:string" use="optional" fixed="Name of the actionReference of the {Set History Navigation} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBTroubleTicketActionReferenceCreateTT" type="xs:string" use="optional" fixed="Name of the actionReference of the {Create Trouble Ticket} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBTroubleTicketActionReferenceCloseTT" type="xs:string" use="optional" fixed="Name of the actionReference of the {Close Trouble Ticket} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBTroubleTicketActionReferenceAssociateTT" type="xs:string" use="optional" fixed="Name of the actionReference of the {Associate Trouble Ticket} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBTroubleTicketActionReferenceDissociateTT" type="xs:string" use="optional" fixed="Name of the actionReference of the {Dissociate Trouble Ticket} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBTroubleTicketActionReferenceSetGenericAttribute" type="xs:string" use="optional" fixed="Name of the actionReference of the {Set generic attribute of Trouble Ticket} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceDelete" type="xs:string" use="optional" fixed="Name of the actionReference of the {Delete Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceHandle" type="xs:string" use="optional" fixed="Name of the actionReference of the {Handle Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceRelease" type="xs:string" use="optional" fixed="Name of the actionReference of the {Release Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__tooltip_UMBactionReferenceClose" type="xs:string" use="optional" fixed="Name of the actionReference of the {Close Alarm} UMB action provided by the target adapter">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="SelectionMode">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Highest"/>
+			<xs:enumeration value="Oldest"/>
+			<xs:enumeration value="Latest"/>
+			<xs:enumeration value="Trigger"/>
+			<xs:enumeration value="HighestNonAcknowledgedNonCleared"/>
+			<xs:enumeration value="HighestNonTerminatedNonCleared"/>
+			<xs:enumeration value="Undefined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="AcknowledgementPropagationPolicy">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="ToAll"/>
+			<xs:enumeration value="ToAllNonCleared"/>
+			<xs:enumeration value="Undefined"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="TerminationPropagationPolicy">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="None"/>
+			<xs:enumeration value="ToAll"/>
+			<xs:enumeration value="ToAllNonCleared"/>
+			<xs:enumeration value="ToAllCleared"/>
+			<xs:enumeration value="ToAllHandled"/>
+			<xs:enumeration value="ToAllCleared_UnAckAllNonCleared"/>
+			<xs:enumeration value="ToAllWithSameTicket"/>
+			<xs:enumeration value="Undefined"/>
+		</xs:restriction>
+	</xs:simpleType>
+		<xs:simpleType name="TroubleTicketPropagationPolicy">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ToAllSubAlarms"/>
+			<xs:enumeration value="ToAllNonClearedSubAlarms"/>
+			<xs:enumeration value="ToAllSubAlarmsIncludingProblemAlarm"/>
+			<xs:enumeration value="ToAllTicketableSubAlarms"/>
+			<xs:enumeration value="ToAllTicketableSubAlarmsIncludingProblemAlarm"/>
+			<xs:enumeration value="ToMasterAlarm"/>
+			<xs:enumeration value="None"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="KeyValues">
+		<xs:sequence>
+			<xs:element name="kv" type="KeyValue" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attribute name="__tooltip" type="xs:string" use="optional" fixed="Configuration of Key Values.">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="KeyValue">
+		<xs:all>
+			<xs:element name="key" type="xs:string"/>
+			<xs:element name="value" type="xs:string"/>
+		</xs:all>
+	</xs:complexType>
+</xs:schema>

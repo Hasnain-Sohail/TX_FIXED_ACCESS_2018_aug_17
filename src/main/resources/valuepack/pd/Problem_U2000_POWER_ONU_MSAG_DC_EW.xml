@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filters xmlns="http://hp.com/uca/expert/filter">
+	<topFilter name="Problem_U2000_POWER_ONU_MSAG_DC_EW" 
+		tagsGroup="ProblemDetection,AvailableTroubleTickets">
+		<anyCondition>
+			<anyCondition tag="PATTERN_Triggers">
+				<anyCondition
+					tag="Trigger,SubAlarm
+					,,ComputeProblemEntityMappers=retrieve_PE_U2000_POWER_ONU_MSAG_DC_EW																									
+	                ,ProblemAlarm.Creation.ReferenceAlarm=Trigger
+	                ,ProblemAlarm.Creation.Other.Attributes=Alarm_Name/retrieveAlarmName_append_Early_WARNING
+	                ,ProblemAlarm.Creation.AdditionalText=${Trigger.mapper.retrieveAll_Addt}
+	                ,ProblemAlarm.Clearance.Condition=TriggersAreClearedOrTerminated
+					,ProblemAlarm.Termination.Policy=ToAll
+					,Customized.defaultFC=retrieveFC_NOC_FO_NATIONAL_SWITCHING
+	                ,Customized.defaultAlarmClassification=Early Warning
+	                ,Customized.ExternalScript=/home/hpossadm/scripts/notify_early_warning.pl
+					,Customized.ExternalScriptParameter=$[dqm]${Event.mapper.retrieveID}$[eq]$[eq]FC$[eq]${Event.mapper.retrieveFC_custom}$[eq]$[eq]SA$[eq]${Trigger.mapper.retrieveSA_custom}$[eq]$[eq]NE_Name$[eq]${Trigger.mapper.retrieveNE_Name_custom}$[eq]$[eq]Alarm_Name$[eq]${Event.mapper.retrieveAlarmName_custom}$[eq]$[eq]NE_ID$[eq]${Trigger.mapper.retrieveNE_id_custom}$[eq]$[eq]Domain$[eq]NGN$[eq]$[eq]OC_Name$[eq]${Trigger.mapper.retrieveOC}$[dqm]
+	                ">
+	                <allCondition>
+	                	<!-- In case of Outage -->
+						<anyCondition>
+							<notCondition>
+								<isPresentFilterStatement>
+									<fieldName>changeId</fieldName>
+								</isPresentFilterStatement>
+							</notCondition>
+							<notCondition>
+								<stringFilterStatement>
+									<fieldName>changeId</fieldName>
+									<operator>matches</operator>
+									<fieldValue>\S+</fieldValue>
+								</stringFilterStatement>
+							</notCondition>
+						</anyCondition>
+						<stringFilterStatement>
+									<fieldName>additionalText</fieldName>
+									<operator>doesNotContain</operator>
+									<fieldValue>NLOD</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+									<fieldName>additionalText</fieldName>
+									<operator>doesNotContain</operator>
+									<fieldValue>TEST</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+									<fieldName>fc</fieldName>
+									<operator>contains</operator>
+									<fieldValue>FC</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+								<fieldName>additionalText</fieldName>
+								<operator>contains</operator>
+								<fieldValue>ProbableCause=DC under-voltage alarm</fieldValue>
+						</stringFilterStatement>	
+						<anyCondition>
+							<stringFilterStatement>
+								<fieldName>originatingManagedEntity</fieldName>
+								<operator>matches</operator>
+								<fieldValue>(?i)[\d\D]*U2000_Islamabad_02[\d\D]*</fieldValue>  
+							</stringFilterStatement> 
+							<!-- for test -->
+							<stringFilterStatement>
+								<fieldName>originatingManagedEntity</fieldName>
+								<operator>matches</operator>
+								<fieldValue>(?i)[\d\D]*OSI_SYSTEM[\d\D]*</fieldValue>  
+							</stringFilterStatement>
+						</anyCondition>
+					 	     		
+						<stringFilterStatement>
+							<fieldName>alarmName</fieldName>
+							<operator>doesNotContain</operator>
+							<fieldValue>Early WARNING</fieldValue>
+						</stringFilterStatement>
+	                	<notCondition>           		
+							<stringFilterStatement>
+								<fieldName>userText</fieldName>
+								<operator>matches</operator>
+								<fieldValue><![CDATA[(?s).*<action>UCA EBC .*</action><trigger>.*</trigger><group>.*</group>.*]]></fieldValue>
+							</stringFilterStatement>
+						</notCondition>
+	                </allCondition>
+	                
+	                
+	           </anyCondition>
+			</anyCondition>
+			
+			<!-- *****************************Sub Alarms************************ -->
+			<!-- additionalText.toString().indexOf("171024605")!=-1 || additionalText.toString().indexOf("171024610")!=-1 || additionalText.toString().indexOf("1611735047")!=-1 || additionalText.toString().indexOf("772874247")!=-1 || additionalText.toString().indexOf("170983457")!=-1;
+			-->
+			
+			
+			<anyCondition tag="PATTERN_ProblemAlarms">
+				<anyCondition tag="ProblemAlarm">
+					<allCondition>
+						<stringFilterStatement>
+							<fieldName>userText</fieldName>
+							<operator>matches</operator>
+							<fieldValue><![CDATA[(?s).*<trigger>.*</trigger><group><p>Problem_U2000_POWER_ONU_MSAG_DC_EW</p>.*</group>.*]]></fieldValue>
+						</stringFilterStatement>
+					</allCondition>
+				</anyCondition>
+			</anyCondition>
+			
+			
+		</anyCondition>
+		</topFilter>
+</filters>

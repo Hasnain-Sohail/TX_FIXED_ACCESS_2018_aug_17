@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProblemPolicies xmlns="http://config.pd.vp.expert.uca.hp.com/"  xmlns:p1="http://config.im.vp.expert.uca.hp.com/">
+	<mainPolicy enableTopoAccess="true" enablePrioritySort="false" multipleParentSupport="true">
+		<candidateVisibility>
+			<candidateVisibilityTimeMode>Max</candidateVisibilityTimeMode>
+			<candidateVisibilityTimeValue>30000</candidateVisibilityTimeValue>
+			<markCandidate>false</markCandidate>
+		</candidateVisibility>
+		<transientFiltering>
+		    <!-- delay 5000ms to process the raw alarm, recommendation set to true, it can reduce the interference of transient alarm -->
+			<transientFilteringEnabled>true</transientFilteringEnabled>
+			<transientFilteringDelay>5000</transientFilteringDelay>
+		</transientFiltering>
+		<counterTotalNumberAlarms>Current</counterTotalNumberAlarms>
+		<actions>
+			<p1:defaultActionScriptReference>Exec_Script</p1:defaultActionScriptReference>
+			<!-- for UMB -->
+			<p1:action name="TeMIP##TeMIPDynamicFlow">
+				<p1:actionReference>TeMIP_AO_Directives_localhost</p1:actionReference>
+				<p1:actionClass>com.hp.uca.expert.vp.common.actions.temip.TeMIPActionsFactory</p1:actionClass>
+	 			<p1:attributeUsedForKeyDuringRecognition>userText</p1:attributeUsedForKeyDuringRecognition>
+				<p1:attributeUsedForKeyPbAlarmCreation>User_Text</p1:attributeUsedForKeyPbAlarmCreation>				
+                <!-- p1:strings>
+					<p1:string key="ocName"><p1:value>uca_pbalarm</p1:value></p1:string>
+				</p1:strings-->
+				<p1:longs>
+					<p1:long key="maxChildrenLength"><p1:value>15000</p1:value></p1:long>
+				</p1:longs>
+				<p1:booleans>
+					<p1:boolean key="useOnlyGroupingKeys"><p1:value>false</p1:value></p1:boolean>
+					<p1:boolean key="copyReferenceAlarmOnPbAlarmCreation">
+						<p1:value>true</p1:value>
+					</p1:boolean>
+					<p1:boolean key="copyReferenceAlarmWhenNotPbAlarm">
+						<p1:value>false</p1:value>
+					</p1:boolean>
+				</p1:booleans>
+			</p1:action>
+		</actions>
+		<troubleTicketActions>
+			<p1:troubleTicketAction name="TeMIP TT">
+				<p1:actionReference>TeMIP_TT_Directives_localhost</p1:actionReference>
+				<p1:actionClass>com.hp.uca.expert.vp.common.actions.temip.TeMIPTroubleTicketActionsFactory</p1:actionClass>
+				<p1:strings>
+					<p1:string key="TT_SERVER entity">
+						<p1:value>TT_SERVER .sm_server_fm</p1:value>
+					</p1:string>
+					<p1:string key="CreateTemplateFile">
+						<p1:value>createTroubleTicketByValueRequest.xml</p1:value>
+					</p1:string>
+					<p1:string key="AssociateTemplateFile">
+						<p1:value>associateTroubleTicketByValueRequest.xml</p1:value>
+					</p1:string>
+					<p1:string key="CloseTemplateFile">
+						<p1:value>closeTroubleTicketByValueRequest.xml</p1:value>
+					</p1:string>
+					<p1:string key="DissociateTemplateFile">
+						<p1:value>dissociateTroubleTicketByValueRequest.xml</p1:value>
+					</p1:string>
+					<p1:string key="User">
+						<p1:value>temip</p1:value>
+					</p1:string>
+					<p1:string key="Input">
+						<p1:value>input</p1:value>
+					</p1:string>
+					<p1:string key="Type">
+						<p1:value>SYNCHRONOUS</p1:value>
+					</p1:string>
+				</p1:strings>
+			</p1:troubleTicketAction>
+		</troubleTicketActions>
+	</mainPolicy>
+	<problemPolicy name="ProblemDefault" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm>
+			<delayForProblemAlarmCreation>2000</delayForProblemAlarmCreation>
+			<delayForProblemAlarmClearance>0</delayForProblemAlarmClearance>
+			<problemAlarmCanTriggerAnotherGroupForSameProblem>false</problemAlarmCanTriggerAnotherGroupForSameProblem>
+		</problemAlarm>
+		<troubleTicket>
+			<automaticTroubleTicketCreation>false</automaticTroubleTicketCreation>
+			<propagateTroubleTicketToSubAlarms>false</propagateTroubleTicketToSubAlarms>
+			<propagateTroubleTicketToProblemAlarm>false</propagateTroubleTicketToProblemAlarm>
+			<delayForTroubleTicketCreation>10000</delayForTroubleTicketCreation>
+		</troubleTicket>
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>false</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>None</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>0</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>0s</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10000ms</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+	
+	<problemPolicy name="Problem_HW_TXM_Access_Fiber_Cut" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>	
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>
+		</timeWindow>
+		 <tags>
+		 	<p1:tag name="TimeWindow.Limit"><p1:value>900</p1:value></p1:tag>
+            <p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+            <p1:tag name="TimeWindow.After"><p1:value>900</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>910</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>true</p1:value></p1:tag><!-- true -->
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>  
+	</problemPolicy>
+		
+	<problemPolicy name="Problem_ZTE_TXM_Access_Fiber_Cut" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>	
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>
+		</timeWindow>
+		 <tags>
+			 <p1:tag name="TimeWindow.Limit"><p1:value>900</p1:value></p1:tag>
+            <p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+            <p1:tag name="TimeWindow.After"><p1:value>900</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>910</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>true</p1:value></p1:tag><!-- true -->
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>  
+	</problemPolicy>
+
+
+	<problemPolicy name="Problem_U31_POWER_ONU_MSAG_DC_EW" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>	
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>
+		</timeWindow>
+		 <tags>
+		 	<p1:tag name="TimeWindow.Limit"><p1:value>240</p1:value></p1:tag>
+            <p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      <!-- 720s -->
+            <p1:tag name="TimeWindow.After"><p1:value>240</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>250s</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10000ms</p1:value></p1:tag>						
+		</tags>  
+	</problemPolicy>	
+		
+	<problemPolicy name="Problem_U2000_POWER_ONU_MSAG_DC_EW" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>	
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>
+		</timeWindow>
+		 <tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>240</p1:value></p1:tag>
+            <p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      <!-- 720s -->
+            <p1:tag name="TimeWindow.After"><p1:value>240</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>250s</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10000ms</p1:value></p1:tag>						
+		</tags>  
+		</problemPolicy>
+		<problemPolicy name="Problem_Tx_NOKIA_FiberCut" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>	
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities><!-- changed from false to true -->
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>310s</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>true</p1:value></p1:tag><!-- true -->
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10000ms</p1:value></p1:tag>						
+		</tags>  
+	</problemPolicy>
+	<problemPolicy name="Problem_Broadband_Voice_Outage_U2K_U31" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>120</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>120</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>130</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>true</p1:value></p1:tag>  <!-- true -->
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>ToAllSubAlarms</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+	<problemPolicy name="Problem_Broadband_Voice_Outage_U2K_U31_Entity" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>310</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>true</p1:value></p1:tag>  <!-- true -->
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+		<problemPolicy name="Problem_U31_U2K_Card_Fault_EW" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>310</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+	
+	<problemPolicy name="Problem_EW_U31_Temp_Alarm" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>320</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+	<problemPolicy name="Problem_U31_Cabinet_Door_Opened" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>240</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>240</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>250</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+	<problemPolicy name="Problem_Door_Open_Early_warning" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>120</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>120</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>130</p1:value></p1:tag><!-- 130 sec -->
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+	<problemPolicy name="Problem_EW_U2000_Temp_Alarm" enableComputeProblemEntityFromMappers="true" enableComputeProblemEntityFromFields="false" >
+		<problemAlarm></problemAlarm>
+		<troubleTicket></troubleTicket>	
+		<groupTickFlagAware>false</groupTickFlagAware>
+		<sameGroupForAllProblemEntities>false</sameGroupForAllProblemEntities>
+		<problemAlarmAbleToCreateGroup>true</problemAlarmAbleToCreateGroup>
+		<enableTriggerConsistencyAfterResync>true</enableTriggerConsistencyAfterResync>
+		<timeWindow>
+			<timeWindowMode>Trigger</timeWindowMode>
+			<timeWindowBeforeTrigger>10</timeWindowBeforeTrigger>
+			<timeWindowAfterTrigger>10</timeWindowAfterTrigger>  <!-- 300000 -->
+		</timeWindow>
+		<tags>
+			<p1:tag name="TimeWindow.Limit"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="TimeWindow.Before"><p1:value>1</p1:value></p1:tag>      
+			<p1:tag name="TimeWindow.After"><p1:value>300</p1:value></p1:tag>
+			<p1:tag name="ProblemAlarm.Creation.Delay"><p1:value>310</p1:value></p1:tag><!-- 300sec -->
+			<p1:tag name="ProblemAlarm.Clearance.Delay"><p1:value>0</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.AutoCreation"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromProblemAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.Propagation.FromThisAlarm"><p1:value>false</p1:value></p1:tag>
+			<p1:tag name="Ticket.OnProblemAlarm.Delay"><p1:value>10</p1:value></p1:tag>						
+		</tags>
+	</problemPolicy>
+</ProblemPolicies>

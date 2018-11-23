@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2016 rel. 2 (x64) (http://www.altova.com) by Loïc (Hewlett Packard Enterprise Com) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:typens="http://hp.com/uca/expert/filter" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" targetNamespace="http://hp.com/uca/expert/filter" elementFormDefault="qualified" version="v1-0" jxb:version="2.0">
+	<element name="filters">
+		<complexType>
+			<sequence>
+				<element name="topFilter" type="typens:topFilterType" maxOccurs="unbounded"/>
+			</sequence>
+			<attribute name="__tooltip" type="string"
+				fixed="Configuration of Filters for a Scenario (or Orchestra Destination)"
+				use="optional">
+				<annotation>
+					<appinfo>
+						<jxb:property fixedAttributeAsConstantProperty="true"/>
+					</appinfo>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<complexType name="topFilterType">
+		<sequence>
+			<choice>
+				<element name="allCondition" type="typens:allConditionType" nillable="true"/>
+				<element name="anyCondition" type="typens:anyConditionType" nillable="true"/>
+				<element name="anyNotCondition" type="typens:anyNotConditionType" nillable="true"/>
+				<element name="notCondition" type="typens:notConditionType" nillable="true"/>
+			</choice>
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="TopFilter configuration.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_name" type="string" use="optional" fixed="Name of the TopFilter element. If the Alarm matches this TopFilter element, the TopFilter name is added in the field passingFilters of the Alarm.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="tagsGroup"/>
+		<attribute name="__tooltip_tagsGroup" type="string" use="optional" fixed="List of comma-separated groups of tags as defined in filterTags.xml file.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="enabled" type="boolean" default="true"/>
+		<attribute name="__tooltip_enabled" type="string" use="optional" fixed="When set to false, the topFilter is no more considered during filtering phase.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="conditionType" abstract="true">
+		<sequence>
+			<element name="allCondition" type="typens:allConditionType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="anyCondition" type="typens:anyConditionType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="anyNotCondition" type="typens:anyNotConditionType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="notCondition" type="typens:notConditionType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="dateFilterStatement" type="typens:dateFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="stringFilterStatement" type="typens:stringFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="intFilterStatement" type="typens:intFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="doubleFilterStatement" type="typens:doubleFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="instanceOfFilterStatement" type="typens:instanceOfFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="isPresentFilterStatement" type="typens:isPresentFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="patternIdFilterStatement" type="typens:patternIdFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="categoryIdFilterStatement" type="typens:categoryIdFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+			<element name="orchestrationTypeFilterStatement" type="typens:orchestrationTypeFilterStatementType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+        <attribute name="tag" type="string" use="optional" />
+        <attribute name="__tooltip_tag" type="string"
+            fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the passingFiltersTags of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'"
+            use="optional">
+            <annotation>
+                <appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </appinfo>
+            </annotation>
+        </attribute>
+		<attribute name="tagsGroup"/>
+		<attribute name="__tooltip_tagsGroup" type="string" use="optional" fixed="List of comma-separated groups of tags as defined in filterTags.xml file.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="enabled" type="boolean" default="true"/>
+		<attribute name="__tooltip_enabled" type="string" use="optional" fixed="When set to false, the condition is no more considered during filtering phase.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="description" type="string" use="optional"/>
+	</complexType>
+	<complexType name="allConditionType">
+		<complexContent>
+			<extension base="typens:conditionType">
+				<sequence/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="To match this Filter element, all conditions must match. Equivalent to a logical AND.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="anyConditionType">
+		<complexContent>
+			<extension base="typens:conditionType">
+				<sequence/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="To match this Filter element, at least one condition must match. Equivalent to a logical OR. Note: Tag information is added only for matching conditions.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="anyNotConditionType">
+		<complexContent>
+			<extension base="typens:conditionType">
+				<sequence/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="To match this Filter element, at least one condition must not match.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="notConditionType">
+		<complexContent>
+			<extension base="typens:conditionType">
+				<sequence/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="To match this Filter element, all conditions must not match.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="filterStatementType" abstract="true">
+		<sequence>
+			<element name="fieldName" type="string"/>
+		</sequence>
+		<attribute name="__tooltip_fieldName" type="string" use="optional" fixed="Name of the field of the Alarm to filter. Example: 'originatingManagedEntity', 'additionalText', etc...">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_fieldName" type="string" use="optional" fixed="originatingManagedEntity">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__dynamicList_fieldName" type="string" use="optional" fixed="alarmFieldList">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="dateFilterStatementType">
+		<complexContent>
+			<extension base="typens:filterStatementType">
+				<sequence>
+					<element name="operator" type="typens:dateOperatorType"/>
+					<element name="fieldValue" type="dateTime"/>
+				</sequence>
+				<attribute name="tag" type="string" use="optional"/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on DateTime information">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_operator" type="string" use="optional" fixed="Operator applied between fieldName and fieldValue to evaluate this Filter element.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__default_operator" type="string" use="optional" fixed="isBefore">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_fieldValue" type="string" use="optional" fixed="The Alarm field selected with 'fieldName' is evaluating using the oparator and this value. ">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. , this Tag information is added in the passingFiltersTags of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<simpleType name="dateOperatorType">
+		<restriction base="string">
+			<enumeration value="isBefore"/>
+			<enumeration value="isAfter"/>
+			<enumeration value="isEqual"/>
+		</restriction>
+	</simpleType>
+	<complexType name="intFilterStatementType">
+		<complexContent>
+			<extension base="typens:filterStatementType">
+				<sequence>
+					<element name="operator" type="typens:intOperatorType"/>
+					<element name="fieldValue" type="int"/>
+				</sequence>
+				<attribute name="tag" type="string" use="optional"/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on Integer information">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_operator" type="string" use="optional" fixed="Operator applied between fieldName and fieldValue to evaluate this Filter element.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__default_operator" type="string" use="optional" fixed="isEqual">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_fieldValue" type="string" use="optional" fixed="The Alarm field selected with 'fieldName' is evaluating using the oparator and this value. ">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the passingFiltersTags of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="doubleFilterStatementType">
+		<complexContent>
+			<extension base="typens:filterStatementType">
+				<sequence>
+					<element name="operator" type="typens:intOperatorType"/>
+					<element name="fieldValue" type="double"/>
+				</sequence>
+				<attribute name="tag" type="string" use="optional"/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on Double information">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_operator" type="string" use="optional" fixed="Operator applied between fieldName and fieldValue to evaluate this Filter element.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__default_operator" type="string" use="optional" fixed="isEqual">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_fieldValue" type="string" use="optional" fixed="The Alarm field selected with 'fieldName' is evaluating using the oparator and this value. ">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the passingFiltersTags of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<simpleType name="intOperatorType">
+		<restriction base="string">
+			<enumeration value="isEqual"/>
+			<enumeration value="isNotEqual"/>
+			<enumeration value="isLower"/>
+			<enumeration value="isGreater"/>
+			<enumeration value="isLowerEqual"/>
+			<enumeration value="isGreaterEqual"/>
+		</restriction>
+	</simpleType>
+	<complexType name="stringFilterStatementType">
+		<complexContent>
+			<extension base="typens:filterStatementType">
+				<sequence>
+					<element name="operator" type="typens:stringOperatorType"/>
+					<element name="fieldValue" type="string"/>
+				</sequence>
+				<attribute name="tag" type="string" use="optional"/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on String information">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_operator" type="string" use="optional" fixed="Operator applied between fieldName and fieldValue to evaluate this Filter element.">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__default_operator" type="string" use="optional" fixed="contains">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_fieldValue" type="string" use="optional" fixed="The Alarm field selected with 'fieldName' is evaluating using the oparator and this value. ">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the passingFiltersTags of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<simpleType name="stringOperatorType">
+		<restriction base="string">
+			<enumeration value="isEqual"/>
+			<enumeration value="isNotEqual"/>
+			<enumeration value="contains"/>
+			<enumeration value="isListedIn"/>
+			<enumeration value="doesNotContain"/>
+			<enumeration value="matches"/>
+			<enumeration value="startsWith"/>
+			<enumeration value="endsWith"/>
+		</restriction>
+	</simpleType>
+	<complexType name="instanceOfFilterStatementType">
+		<sequence>
+			<element name="fullClassName" type="string"/>
+		</sequence>
+		<attribute name="tag" type="string" use="optional"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on Class of the object">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_fullClassName" type="string" use="optional" fixed="The full class Name of the object to match">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_fullClassName" type="string" use="optional" fixed="com.hp.uca.expert.alarm.AlarmCommon">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="isPresentFilterStatementType">
+		<complexContent>
+			<extension base="typens:filterStatementType">
+				<attribute name="tag" type="string" use="optional"/>
+				<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on Field information">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+				<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the passingFiltersTags of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'">
+					<annotation>
+						<appinfo>
+							<jxb:property fixedAttributeAsConstantProperty="true"/>
+						</appinfo>
+					</annotation>
+				</attribute>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="patternIdFilterStatementType">
+		<sequence>
+			<element name="operator" type="typens:stringOperatorType"/>
+			<element name="patternIdValue" type="string"/>
+		</sequence>
+		<attribute name="tag" type="string" use="optional"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Filter statement based on pattern id information."/>
+		<attribute name="__tooltip_operator" type="string" use="optional" fixed="Operator applied between the pattern id of the filtered event and 'patternIdValue' to evaluate this filter statement."/>
+		<attribute name="__default_operator" type="string" use="optional" fixed="isEqual"/>
+		<attribute name="__tooltip_patternIdValue" type="string" use="optional" fixed="The pattern id of the filtered event is evaluating using the oparator and this value."/>
+		<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the 'passingFiltersTags' of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'."/>
+	</complexType>
+	<complexType name="categoryIdFilterStatementType">
+		<sequence>
+			<element name="operator" type="typens:stringOperatorType"/>
+			<element name="categoryIdValue" type="string"/>
+		</sequence>
+		<attribute name="tag" type="string" use="optional"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Filter statement based on category id information."/>
+		<attribute name="__tooltip_operator" type="string" use="optional" fixed="Operator applied between the category id of the filtered event and 'categoryIdValue' to evaluate this filter statement."/>
+		<attribute name="__default_operator" type="string" use="optional" fixed="isEqual"/>
+		<attribute name="__tooltip_categoryIdValue" type="string" use="optional" fixed="The category id of the filtered event is evaluating using the oparator and this value."/>
+		<attribute name="__tooltip_tag" type="string" use="optional" fixed="Tag information. When an Alarm matches these conditions, this Tag information is added in the 'passingFiltersTags' of the Alarm. A tag is a ',' separated list. Example: 'ProblemAlarm, Trigger, Aggregation'."/>
+	</complexType>
+	<complexType name="orchestrationTypeFilterStatementType">
+		<sequence>
+			<element name="orchestrationTypeValue">
+				<simpleType>
+					<restriction base="string">
+						<enumeration value="ProblemAlarmCreatedByPD"/>
+						<enumeration value="ServiceAlarmCreatedByTSP"/>
+						<enumeration value="NetworkAlarm"/>
+						<enumeration value="TroubleTicket"/>
+						<enumeration value="AutomationEvent"/>
+						<enumeration value="RawEvent"/>
+					</restriction>
+				</simpleType>
+			</element>
+		</sequence>
+		<attribute name="tag" type="string" use="optional"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Filter element based on orchestration type information.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_orchestrationTypeValue" type="string" use="optional" fixed="The orchestration type to match.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_orchestrationType" type="string" use="optional" fixed="NetworkAlarm">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+</schema>

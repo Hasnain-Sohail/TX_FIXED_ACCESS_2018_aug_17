@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uca:Alarms xmlns:uca="http://hp.com/uca/expert/x733Alarm"
+	xmlns="http://hp.com/uca/expert/x733Alarm">
+	<AlarmCreationInterface xmlns="http://hp.com/uca/expert/x733Alarm">
+		<!-- HTML escape character  &lt; &gt;&amp;&quot;&copy;
+	                           map:  <，  >，  &，   "，      ©; 
+	                           e.g.  <ALM_ID>=&lt;ALM_ID&gt; -->
+		<identifier>OPERATION_CONTEXT ihvtfs01_ns:.Nat_Tx_Fiberhome alarm_object 5413882</identifier>
+		<sourceIdentifier>TeMIP EMS</sourceIdentifier>
+		<originatingManagedEntity>HW_T2000_Sys ihvtfs01_ns:.U2000_Islamabad_02 Managed_Element "70676" Slot "/rack=55553/shelf=1/slot=11535386" Equipment "1"</originatingManagedEntity>
+		<alarmType>ENVIRONMENTAL_ALARM</alarmType>
+		<probableCause>ExternalIFDeviceProblem</probableCause>
+		<perceivedSeverity>CRITICAL</perceivedSeverity>		
+		<networkState>NOT_CLEARED</networkState>
+		<operatorState>NOT_ACKNOWLEDGED</operatorState>
+		<problemState>NOT_HANDLED</problemState>
+		<problemInformation></problemInformation>
+		<additionalInformation></additionalInformation>
+		<additionalText>"@Priority=20@Outage_Flag=@NE_Name=MTR-1_LAR:b@USER=:add:E: 
+                                          native ProbableCause=The temperature is abnormal 
+                                          service affecting=SA_SERVICE_AFFECTING, 
+                                           
+                                          nativeEMS Name=NMUM1, 
+                                          additionalInfo = alarmlocation=OUT; CircuitInfo=; AlarmMatchID=118658347; 
+                                          productName=Citrans 640; AlarmPosition=; AlarmObjectMEName=MTR-1_LAR; 
+                                          acknowledgeTime=; , 
+                                          , 
+                                          &lt;ALM_ID&gt;EMS WRI_1 ManagedElement 70676 EquipmentHolder 
+                                          /rack=55553/shelf=1/slot=11535386 Equipment 1@#@255@#@ENV@#@1&lt;ALM_ID&gt; 
+                                          Link INFO:OTNM_Islamabad_01;MTR-1_LAR;/slot=/port= 
+                                          Link INFO1(wdm):NMUM1 
+                                          NE_Lookup: CircuitInfo=__ CircuitInfo=; AlarmMatchID=118658347; productName=Citrans 
+                                          640; AlarmPosition=; AlarmObjectMEName=MTR-1_LAR; acknowledgeTime=; __MTR-1_LAR 
+                                          @AEnd=/rack=55553/shelf=1/slot=11535386@ZEnd=@SERVICE=:: 
+                                          OUTAGE_CAUSED(F/C)= 
+                                          LINK_FC= 
+                                          PA_ID=:: 
+                                          topology=/rack=55553/shelf=1/slot=11535386 
+                                          %%%EMS_DOMAIN=Transmission@EMS_VENDOR=FiberHome@EMS_REGION=National@EMS_LOCATION=1st 
+                                          floor, CDDT Building, 
+                                          Islamabad@FRIENDLY_NAME=OTNM_Islamabad_01;MTR-1_LAR;/slot=/port=@NATIVE_CAUSE=TEMP_OVER;213+++ 
+                                          TRANSIENT_FILTER FS03_T2000_All_Alarm: 1 events 
+                                           
+                                          This is a value added event emitted by TRANSIENT_FILTER FS03_T2000_All_Alarm 
+                                           Number of similar events received during the filtering period: 1 
+                                               	0 with severity indeterminate 
+                                          	1 with severity critical 
+                                          	0 with severity major 
+                                          	0 with severity minor 
+                                          	0 with severity warning 
+                                          	0 with severity clear 
+                                          First event received timestamp Wed, Jan 31, 2018 01:12:44 PM 
+                                           Last event received timestamp Wed, Jan 31, 2018 01:12:44 PM 
+                                          """
+                                         
+                                          </additionalText>
+		<parents></parents>
+		<parents></parents>
+		<customFields>			
+			<customField name="alarmName" value="TEMP_OVER;213" />
+			<customField name="fc" value="FC.TXM.HTR.ABT" />
+			<customField name="sa" value="test" />
+			<customField name="neName" value="HTR_Sarai Salah" />
+			<customField name="neId" value="Sarai Salah" />
+			<!--<customField name="userText" value="&lt;action&gt;UCA EBC Action Id [4292816651256077069]&lt;/action&gt;&lt;trigger&gt;operation_context oc.nscgsmhw_raw alarm_object h16&lt;/trigger&gt;&lt;group&gt;&lt;p&gt;PROBLEM_IP_MPLS&lt;/p&gt;&lt;e&gt;mebj96cgn01-fpc-10&lt;/e&gt;&lt;/group&gt;" />-->
+		</customFields>
+	</AlarmCreationInterface>
+	
+<!-- Real handled alarm on 20180131
+OPERATION_CONTEXT ihvtfs01_ns:.Nat_Tx_Fiberhome alarm_object 5413882 
+On director: ihvtfs01_ns:.temip.ihvtfs02_director 
+AT Wed, Jan 31, 2018 02:05:58 PM 
+
+Examination of summary attributes shows :
+                                  State = Outstanding
+                         Problem Status = Not-Handled
+                     Creation Timestamp = Wed, Jan 31, 2018 01:13:14 PM
+                             Identifier = 5413882
+                         Managed Object = HW_T2000_Sys ihvtfs01_ns:.OTNM_Islamabad_01 Managed_Element "70676" Slot 
+                                          "/rack=55553/shelf=1/slot=11535386" Equipment "1"
+                        Target Entities = { HW_T2000_Sys ihvtfs01_ns:.OTNM_Islamabad_01 Managed_Element "70676" Slot 
+                                            "/rack=55553/shelf=1/slot=11535386" Equipment "1" }
+                             Alarm Type = EnvironmentalAlarm
+                     Perceived Severity = Critical
+                         Probable Cause = ExternalIFDeviceProblem
+                             Event Time = Wed, Jan 31, 2018 01:12:01 PM
+                  Clearance Report Flag = False
+                                 Domain = Domain ihvtfs01_ns:.National_Tx_FiberHome_dm
+                        Escalated Alarm = False
+                        Additional Text = "@Priority=20@FC=FC.TXM.MUL.MUL3@Outage_Flag=@NE_Name=MTR-1_LAR:b@USER=:add:E: 
+                                          native ProbableCause=TEMP_OVER;213, 
+                                          service affecting=SA_SERVICE_AFFECTING, 
+                                           
+                                          nativeEMS Name=NMUM1, 
+                                          additionalInfo = alarmlocation=OUT; CircuitInfo=; AlarmMatchID=118658347; 
+                                          productName=Citrans 640; AlarmPosition=; AlarmObjectMEName=MTR-1_LAR; 
+                                          acknowledgeTime=; , 
+                                          , 
+                                          <ALM_ID>EMS WRI_1 ManagedElement 70676 EquipmentHolder 
+                                          /rack=55553/shelf=1/slot=11535386 Equipment 1@#@255@#@ENV@#@1<ALM_ID> 
+                                          Link INFO:OTNM_Islamabad_01;MTR-1_LAR;/slot=/port= 
+                                          Link INFO1(wdm):NMUM1 
+                                          NE_Lookup: CircuitInfo=__ CircuitInfo=; AlarmMatchID=118658347; productName=Citrans 
+                                          640; AlarmPosition=; AlarmObjectMEName=MTR-1_LAR; acknowledgeTime=; __MTR-1_LAR 
+                                          @AEnd=/rack=55553/shelf=1/slot=11535386@ZEnd=@SERVICE=:: 
+                                          OUTAGE_CAUSED(F/C)= 
+                                          LINK_FC= 
+                                          PA_ID=:: 
+                                          topology=/rack=55553/shelf=1/slot=11535386 
+                                          %%%EMS_DOMAIN=Transmission@EMS_VENDOR=FiberHome@EMS_REGION=National@EMS_LOCATION=1st 
+                                          floor, CDDT Building, 
+                                          Islamabad@FRIENDLY_NAME=OTNM_Islamabad_01;MTR-1_LAR;/slot=/port=@NATIVE_CAUSE=Early 
+                                          WARNING: TEMP_OVER;213+++ 
+                                          TRANSIENT_FILTER FS03_T2000_All_Alarm: 1 events 
+                                           
+                                          This is a value added event emitted by TRANSIENT_FILTER FS03_T2000_All_Alarm 
+                                           Number of similar events received during the filtering period: 1 
+                                               	0 with severity indeterminate 
+                                          	1 with severity critical 
+                                          	0 with severity major 
+                                          	0 with severity minor 
+                                          	0 with severity warning 
+                                          	0 with severity clear 
+                                          First event received timestamp Wed, Jan 31, 2018 01:12:44 PM 
+                                           Last event received timestamp Wed, Jan 31, 2018 01:12:44 PM 
+                                          """
+                      Specific Problems = { 4542038,
+                                            23015775,
+                                            36844853 }
+                               SA Total = 0 Alarms
+                    Problem Occurrences = 1 Problems
+                    Original Event Time = Wed, Jan 31, 2018 01:12:01 PM
+                      Original Severity = Critical
+                              User Text = "Handled by***EW_TEMP_ALARM"
+                           Alarm Origin = IncomingAlarm
+ -->	
+		
+</uca:Alarms>

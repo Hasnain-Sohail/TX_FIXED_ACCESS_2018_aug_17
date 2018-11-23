@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mappers xmlns="http://hp.com/uca/expert/instancemapper">
+
+	<mapper name="computeProblemEntity">
+		<extract unchangedValuetIfNoMatch="true" replaceAll="true">
+			<fieldName>originatingManagedEntity</fieldName>
+			<matcher>\s</matcher>
+			<mappedTo></mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="getBscBtsFromUserText">
+		<extract>
+			<fieldName>userText</fieldName>
+            <matcher>(\w*)\W*(\w*)(.*)</matcher>
+            <mappedTo>bsc $1 bts $2</mappedTo>
+		</extract>
+	</mapper>
+
+    <mapper name="getSomethingFromSummary">
+        <extract>
+            <fieldName>summary</fieldName>
+            <matcher>(.*)</matcher>
+            <mappedTo>$1</mappedTo>
+        </extract>
+    </mapper>
+
+	<mapper name="get_Servers" separator=",">
+		<extract>
+			<fieldName>servers</fieldName>
+            <matcher>(.*)</matcher>
+            <mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+    <mapper name='getEmptyString'>
+        <extract>
+            <fieldName>originatingManagedEntity</fieldName>
+            <matcher>(?i)(.*)</matcher>
+            <mappedTo></mappedTo>
+        </extract>
+    </mapper>
+    
+    <!--E.g  additionalText=...@Priority=20@FC=FC.REGIONAL.MJD.RWP.I10@Outage_Flag=TRUE@NE_Name=211-F-11:b@USER=: 
+			resutl=@NE_Name=211-F-11:b@USER=:  -->
+	<mapper name="retrieveSuffixATAfterOutage_Flag">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*@Outage_Flag=)([^@]*)(@[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$3]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrievePrefixATBeforeOutage_Flag">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*@Outage_Flag=)([^@]*)(@[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveSwitchName'>
+        <extract>
+            <fieldName>originatingManagedEntity</fieldName>
+            <matcher>(?i)SWITCH (.*)$</matcher>
+            <mappedTo>$1</mappedTo>
+        </extract>
+    </mapper>
+    
+   <mapper name='retrievePhoneName'>
+        <extract>
+            <fieldName>originatingManagedEntity</fieldName>
+            <matcher>(?i)PHONE (.*)$</matcher>
+            <mappedTo>$1</mappedTo>
+        </extract>
+    </mapper>
+    
+    		<mapper name='befoutageflag'>
+        <extract>
+            <fieldName>additionalText</fieldName>
+            <matcher>([\d\D]*@Outage_Flag=)[\d\D]*</matcher>
+            <mappedTo>$1</mappedTo>
+        </extract>
+    </mapper>
+    
+    <mapper name='aftoutageflag'>
+        <extract>
+            <fieldName>additionalText</fieldName>
+            <matcher>([\d\D]*@Outage_Flag=)([\d\D]*)</matcher>
+            <mappedTo>$2</mappedTo>
+        </extract>
+    </mapper>
+    
+    <!--E.g  additionalText=Start...@NATIVE_CAUSE=MUT_LOS+++  End.
+			resutl=Start...@NATIVE_CAUSE=-->
+	<mapper name="retrievePrefixATBeforeNATIVE_CAUSE">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)([^\+]*)([\+]+[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+        
+    
+    <!--E.g  additionalText=D40@NATIVE_CAUSE=MUT_LOS+++  TRANSIENT_FILTER
+			resutl=+++  End.-->
+	<mapper name="retrieveSuffixATAfterNATIVE_CAUSE">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)([^\+]*)([\+]+[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$3]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	
+	<mapper name="retrieveNewNATIVE_CAUSE_Early_WARNING_U31">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*alarmNetype=)([\d\D]*)(alarmIndex=[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$2-]]></mappedTo>
+		</extract>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)([^\+]*)([\+]+[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$2$2]]></mappedTo> <!-- using $2 twice here because PTCL have implemented it in this way -->
+		</extract>
+	</mapper>
+	
+	
+	
+	<mapper name="retrieveProdName">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*alarmNetype=)([\d\D]*)(alarmIndex=[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$2]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrieveATbetweenNATIVE_CAUSEand+++">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)([^\+]*)([\+]+[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$2]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	
+	<mapper name="retrieveAlarmsListAOID">
+		<!-- retrieve ao.id -->
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>\"$2==</mappedTo>
+		</extract>
+		</mapper> 
+		<!-- retrieve FC -->
+		<mapper name="retrieveAlarmsListFC">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[[\d\D]*@FC=([\d\D]*)@Outage_Flag[\d\D]*]]></matcher>
+			<mappedTo>FC=$1</mappedTo>
+		</extract>
+		</mapper> 
+		<mapper name="retrieveAlarmsListNE">
+		<!-- retrieve NE_Name -->
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[[\d\D]*NE_Name=([\d\D]*):b[\d\D]*]]></matcher>
+			<mappedTo>NE_Name=$1</mappedTo>
+		</extract>
+		</mapper> 
+		<mapper name="retrieveAlarmsListAN">
+		<!-- retrieve Alarm_Name -->
+		
+		<extract>
+		
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)([^\+]*)([\+]+[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Alarm_Name=$2]]></mappedTo>
+		</extract>
+		</mapper> 
+		<mapper name="retrieveAlarmsListOC">
+		<!-- retrieve OC -->
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>Domain=NGN_OC_Name==$1\"</mappedTo>
+		</extract>
+	</mapper> 
+	<mapper name="retrieveNewNATIVE_CAUSE_Early_WARNING">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)([^\+]*)([\+]+[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Early WARNING: $2]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	<!-- Problem_HW_TXM_Access_Fiber_Cut -->
+	<mapper name="retrieveHWAEndFrom">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@AEnd=[\d\D]*Managed_Element\s+([\d\D]*)\s+PTP([\d\D]*)@ZEnd=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrieveHWZEndTo">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@ZEnd=[\d\D]*Managed_Element\s+([\d\D]*)\s+PTP([\d\D]*)@SERVICE=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<!-- Problem_HW_TXM_Access_Fiber_Cut -->	
+	<mapper name="retrieveNewNATIVE_CAUSE_HW_FC">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@AEnd=[\d\D]*Managed_Element\s+([\d\D]*)\s+PTP[\d\D]*@ZEnd=[\d\D]*</matcher>
+			<mappedTo>F/C: $1 to </mappedTo>
+		</extract>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@ZEnd=[\d\D]*Managed_Element\s+([\d\D]*)\s+PTP[\d\D]*@SERVICE=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper> 
+	
+	
+	<!-- Problem_ZTE_TXM_Access_Fiber_Cut -->
+	<mapper name="retrieveZTEAEndFrom">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@AEnd=[^;]*;([^,]*),[\d\D]*@ZEnd=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrieveZTEZEndTo">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@ZEnd=[^;]*;([^,]*),[\d\D]*@SERVICE=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<!-- Problem_ZTE_TXM_Access_Fiber_Cut -->	
+	<mapper name="retrieveNewNATIVE_CAUSE_ZTE_FC">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@AEnd=[^;]*;([^,]*),[\d\D]*@ZEnd=[\d\D]*</matcher>
+			<mappedTo>F/C: $1 to </mappedTo>
+		</extract>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@ZEnd=[^;]*;([^,]*),[\d\D]*@SERVICE=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper> 
+	
+	<mapper name='retrieveSA'>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>[\d\D]*@SA=([^@]*)@[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	
+	<mapper name='retrieveNE_id'>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>["]*([^@]*)@[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveOC'>
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*\.([\d\D]*)) alarm_object ([\d\D]*)|[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>$2$4</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveID'>
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>$2</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveFC'>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>[\d\D]*@FC=([\d\D]*)@Outage_Flag=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveNE_Name'>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>[\d\D]*@NE_Name=([\d\D]*):b[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+<!-- custom field Mappers -->
+
+	<mapper name='retrieveFC_custom'>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>	
+	
+	<mapper name='retrieveAlarmName_custom'>
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrieveAlarmName_append_Early_WARNING">
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Early WARNING: $1]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	
+	<mapper name='retrieveSA_custom'>
+		<extract>
+			<fieldName>sa</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveNE_Name_custom'>
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveNE_id_custom'>
+		<extract>
+			<fieldName>neId</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+		<mapper name="retrieveNewNATIVE_CAUSE_Early_WARNING_U31_custom">
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher><![CDATA[([\d\D]*)([\d\D]*alarmNetype=)([\d\D]*)\s+(alarmIndex=[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Early warning:$1-]]></mappedTo>
+		</extract>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher><![CDATA[([\d\D]*)([\d\D]*alarmNetype=)([\d\D]*)\s+(alarmIndex=[\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$2]]></mappedTo> <!-- using $2 twice here because PTCL have implemented it in this way -->
+		</extract>
+	</mapper>
+	
+	<!-- FC hardcode if not available -->
+	<mapper name='retrieveFC_NOC_FO_NATIONAL_TXM'>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>NOC.FO.NATIONAL.TXM</mappedTo>
+		</extract>
+	</mapper>
+	<mapper name='retrieveFC_NOC_FO_NATIONAL_SWITCHING'>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>NOC.FO.NATIONAL.SWITCHING</mappedTo>
+		</extract>
+	</mapper>
+	<!-- for new rule Tx_Nokia_FiberCut -->
+	<mapper name="retrieveNewNATIVE_CAUSE_Tx_NOKIA_FiberCut">
+            <extract>
+                  <fieldName>additionalText</fieldName>
+                  <matcher>[\d\D]*@AEnd=([\d\D]*)@ZEnd=[\d\D]*</matcher>
+                  <mappedTo>F/C: $1 to </mappedTo>
+            </extract>
+            <extract>
+                  <fieldName>additionalText</fieldName>
+                  <matcher>[\d\D]*@AEnd=([\d\D]*)@ZEnd=([\d\D]*);[\d\D]*</matcher>
+                  <mappedTo>$2</mappedTo>
+            </extract>
+      </mapper>
+      <!-- Broadband_voice -->
+      <mapper name='retrieveNE_Type_FC_BB'>
+		<extract>
+			<fieldName>technology</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieveNE_Type_BB'>
+		<extract>
+			<fieldName>technology</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	<mapper name="retrieveNEName_BB">
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+	<mapper name='retrieveNE_Type_NE_Name_BB'>
+		<extract>
+			<fieldName>technology</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>friendlyName</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	<mapper name="retrieveSuffixATAfterNATIVE_CAUSE_Flag">
+           <extract>
+                  <fieldName>additionalText</fieldName>
+                  <matcher><![CDATA[([\d\D]*NATIVE_CAUSE=)(([^\+]*)([\+]+[\d\D]*))]]></matcher>
+                  <mappedTo><![CDATA[$4]]></mappedTo>
+           </extract>
+     </mapper>
+     <mapper name="retrieveNew_Alarm_Name_Early_WARNING_U31_U2K_custom">
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Early Warning $1]]></mappedTo> <!-- using $2 twice here because PTCL have implemented it in this way -->
+		</extract>
+	</mapper>
+     
+	      <!-- NEw rules -->
+     
+	<mapper name='retrieve_PE_U31_Cabinet_Door_Opened'>
+		<extract>
+			<fieldName>technology</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*\.([\d\D]*)) alarm_object ([\d\D]*)|[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>$2$4</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrieveNew_Alarm_Name_Early_WARNING_U31_Cabinet_Door_Opened">
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Early Warning: $1]]></mappedTo> <!-- using $2 twice here because PTCL have implemented it in this way -->
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieve_PE_EW_U31_Temp_Alarm'>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*\.([\d\D]*)) alarm_object ([\d\D]*)|[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>$2$4</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+	<mapper name="retrieveNew_Alarm_Name_Early_WARNING_EW_U31_Temp_Alarm">
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[Early Warning The NE temperature is High]]></mappedTo> <!-- using $2 twice here because PTCL have implemented it in this way -->
+		</extract>
+	</mapper>
+	
+	<mapper name='retrieve_PE_U2000_POWER_ONU_MSAG_DC_EW'>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*\.([\d\D]*)) alarm_object ([\d\D]*)|[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>$2$4</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+     <!-- Nokia TX Fiber Cut -->
+     <mapper name="retrieveNokiaAEndFrom">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@AEnd=([\d\D]*)@ZEnd=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	
+	<mapper name="retrieveNokiaZEndTo">
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@ZEnd=([\d\D]*)@SERVICE=[\d\D]*</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+	</mapper>
+	<mapper name="retrieveNewNATIVE_CAUSE_NOKIA_FC">
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>F/C: $1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>additionalText</fieldName>
+			<matcher>(?i)[\d\D]*@ZEnd=[^;]*;([^,]*)/[\d\D]*@SERVICE=[\d\D]*</matcher>
+			<mappedTo> to $1</mappedTo>
+		</extract>
+	</mapper>
+	<mapper name='retrieveAlarmName_custom_EW'>
+		<extract>
+			<fieldName>alarmName</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>Early Warning $1</mappedTo>
+		</extract>
+	</mapper>
+	<mapper name='retrieve_PE_U31_Power_ONU_MSAG_DC_EW'>
+		<extract>
+			<fieldName>technology</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>fc</fieldName>
+			<matcher>([\d\D]*)</matcher>
+			<mappedTo>$1</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>identifier</fieldName>
+			<matcher>(?i)[\d\D]*OPERATION_CONTEXT ([\d\D]*\.([\d\D]*)) alarm_object ([\d\D]*)|[\d\D]*OPERATION_CONTEXT ([\d\D]*) alarm_object ([\d\D]*)</matcher>
+			<mappedTo>$2$4</mappedTo>
+		</extract>
+		<extract>
+			<fieldName>neName</fieldName>
+			<matcher><![CDATA[([\d\D]*)]]></matcher>
+			<mappedTo><![CDATA[$1]]></mappedTo>
+		</extract>
+	</mapper>
+	
+	
+	<mapper name="retrieveAll_Addt">
+           <extract>
+                  <fieldName>additionalText</fieldName>
+                  <matcher><![CDATA[([\d\D]*)]]></matcher>
+                  <mappedTo><![CDATA[$1]]></mappedTo>
+           </extract>
+     </mapper>
+</mappers>
+        
+

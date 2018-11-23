@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ActionRegistryXML xmlns="http://registry.action.mediation.uca.hp.com/">
+
+    <MediationValuePack MvpName="temip" MvpVersion="1.0"
+        url="http://localhost:18192/uca/mediation/action/ActionService?WSDL" brokerURL="failover://tcp://localhost:10000">
+
+        <Action actionReference="TeMIP_AO_Directives_localhost">
+            <ServiceName>aoDirective</ServiceName>
+            <NmsName>localhost</NmsName>
+        </Action>
+        <Action actionReference="TeMIP_FlowManagement">
+            <ServiceName>subscriptionManagement</ServiceName>
+            <NmsName>localTeMIP</NmsName>
+        </Action>
+        <Action actionReference="TeMIP_TT_Directives_localhost">
+            <ServiceName>ttDirective</ServiceName>
+            <NmsName>localTeMIP</NmsName>
+        </Action>
+    </MediationValuePack>
+
+    <MediationValuePack MvpName="other" MvpVersion="1.0"
+        url="http://localhost:18192/uca/mediation/action/ActionService?WSDL" brokerURL="failover://tcp://localhost:10000">
+
+        <Action actionReference="MyOtherAction_localhost">
+            <ServiceName>dummyService</ServiceName>
+            <NmsName>localhost</NmsName>
+        </Action>
+
+        <Action actionReference="MyOtherTT_localhost">
+            <ServiceName>dummyService</ServiceName>
+            <NmsName>localhost</NmsName>
+        </Action>
+
+    </MediationValuePack>
+
+
+    <!-- UMB Actions -->
+    <UMBActions>
+
+        <!-- UCA DB actions (convenient reference) -->
+        <UMBAction actionReference="UCA_AO" targetName="UCA-EBC" targetActionName="AOAction" />
+
+        <!-- Alarm actions -->
+        <UMBAction actionReference="ExecAction" targetName="Exec" targetActionName="GenericAction" />
+
+        <!-- Alarm actions over TeMIP -->
+        <UMBAction actionReference="AOAction" targetName="TeMIP" targetActionName="AOAction" />
+        <UMBAction actionReference="AOAction_Set" targetName="temip" targetActionName="AOAction_Set" />
+        <UMBAction actionReference="PassthroughAction" targetName="TeMIP" targetActionName="PassthroughAction" />
+        <UMBAction actionReference="TTAction" targetName="TeMIP" targetActionName="CreateTT" />
+
+        <!-- Alarm actions over NMS simulator -->
+        <UMBAction actionReference="createAlarm" targetName="UCA-EBC" targetActionName="DummyAction" />
+        <UMBAction actionReference="setGenericAttribute" targetName="NmsSimulator" targetActionName="setAlarmAttribute" />
+        <UMBAction actionReference="setHistoryNavigation" targetName="NmsSimulator" targetActionName="setAlarmAttribute" />
+        <UMBAction actionReference="groupAlarms" targetName="NmsSimulator" targetActionName="Not_Supported" />
+        <UMBAction actionReference="ungroupAlarms" targetName="NmsSimulator" targetActionName="Not_Supported" />
+        <UMBAction actionReference="deleteAlarm" targetName="NmsSimulator" targetActionName="Not_Used" />
+
+        <UMBAction actionReference="clearAlarm" targetName="NmsSimulator" targetActionName="clearAlarm" />
+        <UMBAction actionReference="acknowledgeAlarm" targetName="NmsSimulator" targetActionName="acknowledgeAlarm" />
+        <UMBAction actionReference="unacknowledgeAlarm" targetName="NmsSimulator" targetActionName="unacknowledgeAlarm" />
+        <UMBAction actionReference="terminateAlarm" targetName="NmsSimulator" targetActionName="terminateAlarm" />
+        <UMBAction actionReference="handleAlarm" targetName="NmsSimulator" targetActionName="handleAlarm" />
+        <UMBAction actionReference="releaseAlarm" targetName="NmsSimulator" targetActionName="releaseAlarm" />
+        <UMBAction actionReference="closeAlarm" targetName="NmsSimulator" targetActionName="closeAlarm" />
+
+        <!-- Trouble Ticket actions over UTTL simulator -->
+        <UMBAction actionReference="createTT" targetName="TTSSimulator" targetActionName="CreateTT" />
+        <UMBAction actionReference="closeTT" targetName="TTSSimulator" targetActionName="ResolveTT" />
+        <UMBAction actionReference="associateTT" targetName="TTSSimulator" targetActionName="UpdateTT" />
+        <UMBAction actionReference="dissociateTT" targetName="TTSSimulator" targetActionName="UpdateTT" />
+        <UMBAction actionReference="setGenericAttributeTT" targetName="TTSSimulator" targetActionName="UpdateTT" />
+    </UMBActions>
+
+</ActionRegistryXML>

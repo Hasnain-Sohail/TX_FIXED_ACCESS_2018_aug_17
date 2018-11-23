@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<filters xmlns="http://hp.com/uca/expert/filter">
+
+	<topFilter name="Signature" tagsGroup="Signature">
+		<anyCondition>
+			<!-- Sign Alarms -->
+			<allCondition>
+				<instanceOfFilterStatement>
+					<fullClassName>com.hp.uca.expert.alarm.AlarmCommon</fullClassName>
+				</instanceOfFilterStatement>
+				<anyCondition>
+					<!-- Orchestration Types -->
+					<anyCondition>
+						<stringFilterStatement tag="OrchestrationType=ProblemAlarmCreatedByPD">
+							<fieldName>userText</fieldName>
+							<operator>matches</operator>
+							<fieldValue><![CDATA[.*<action>UCA EBC .*</action><trigger>.*</trigger><group>.*</group>.*]]></fieldValue>
+						</stringFilterStatement>
+					</anyCondition>
+					<!-- Pattern Ids -->
+					<anyCondition>
+						<stringFilterStatement tag="PatternId=MyPA">
+							<fieldName>additionalText</fieldName>
+							<operator>contains</operator>
+							<fieldValue>My Problem</fieldValue>
+						</stringFilterStatement>
+					</anyCondition>
+				</anyCondition>			
+			</allCondition>
+		</anyCondition>
+	</topFilter>
+
+</filters>

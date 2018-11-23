@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2017 rel. 3 (x64) (http://www.altova.com) by Anzile (Hewlett Packard Enterprise Com) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:typens="http://hp.com/uca/expert/instancemapper" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" targetNamespace="http://hp.com/uca/expert/instancemapper" elementFormDefault="qualified" version="v1-0" jxb:version="2.0">
+	<element name="mappers">
+		<complexType>
+			<sequence>
+				<element name="mapper" type="typens:mapperType" minOccurs="0" maxOccurs="unbounded"/>
+				<element name="cypherQuery" type="typens:cypherQueryType" minOccurs="0" maxOccurs="unbounded"/>
+			</sequence>
+			<attribute name="__tooltip" type="string" use="optional" fixed="Configuration of Topological Mappers">
+				<annotation>
+					<appinfo>
+						<jxb:property fixedAttributeAsConstantProperty="true"/>
+					</appinfo>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+	<complexType name="mapperType">
+		<choice>
+			<sequence>
+				<element name="extract" type="typens:extractType" minOccurs="1" maxOccurs="unbounded"/>
+			</sequence>
+			<element name="pattern" type="typens:patternType"/>
+			<element name="query" type="typens:queryType"/>
+			<element name="expression" type="typens:expressionType"/>
+		</choice>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="separator" type="string" use="optional"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Mapper Configuration">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_name" type="string" use="optional" fixed="Mapper Name.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_separator" type="string" use="optional" fixed="Separator. When present multiple strings may be returned as values">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="extractType">
+		<sequence>
+			<element name="fieldName" type="string"/>
+			<element name="matcher" type="string"/>
+			<element name="mappedTo" type="string"/>
+			<element name="noMatchValue" type="string" minOccurs="0"/>
+		</sequence>
+		<attribute name="replaceAll" type="boolean" use="optional" default="false"/>
+		<attribute name="unchangedValuetIfNoMatch" type="boolean" use="optional" default="false"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Mapper extraction parameter.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_fieldName" type="string" use="optional" fixed="Name of the field of the Alarm where information is extracted.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__dynamicList_fieldName" type="string" use="optional" fixed="alarmFieldList">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_matcher" type="string" use="optional" fixed="Regular expression to extract information to Map">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_matcher" type="string" use="optional" fixed="(.*)">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_mappedTo" type="string" use="optional" fixed="Expression containing information extracted. Example: 'data-$1'">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_mappedTo" type="string" use="optional" fixed="$1">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_unchangedValuetIfNoMatch" type="string" use="optional" fixed="When false tells use the noMatchValue when matcher does not find any match, or when true the value is left unchanged">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_unchangedValuetIfNoMatch" type="string" use="optional" fixed="false">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_replaceAll" type="string" use="optional" fixed="When false only first matching pattern will be mappedTo, or when true all matching patterns will be applied">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_replaceAll" type="string" use="optional" fixed="false">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_noMatchValue" type="string" use="optional" fixed="Default value to use when matcher does not find any match. If not specified an empty string is returned.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="cypherQueryType">
+		<sequence>
+			<element name="query" type="string" minOccurs="1" maxOccurs="1"/>
+		</sequence>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="CypherQuery Configuration">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_name" type="string" use="optional" fixed="CypherQuery Name.">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_query" type="string" use="optional" fixed="CypherQuery String">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_query" type="string" use="optional" fixed="START n=node:myIndex(name=${nodename}) MATCH (n)--(m) RETURN m">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="patternType">
+		<sequence>
+			<element name="expression" type="string"/>
+			<element name="matcher" type="string"/>
+			<element name="mappedTo" type="string"/>
+		</sequence>
+		<attribute name="regex" type="string" use="optional" default="\[\w*\]"/>
+		<attribute name="removed" type="string" use="optional" default="\[|\]"/>
+		<attribute name="replaceAll" type="boolean" use="optional" default="false"/>
+		<attribute name="bestEffortIfNoMatch" type="boolean" use="optional" default="false"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Pattern Configuration">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_regex" type="string" use="optional" fixed="The regular expression to match a mapper name">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_regex" type="string" use="optional" fixed="\[\w*\]">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_removed" type="string" use="optional" fixed="The regular expression to be ignored from the matcher in order to form the mapper name">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_removed" type="string" use="optional" fixed="\[|\]">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_expression" type="string" use="optional" fixed="Expression containing all mappers to be matched. Example: '[x]~[y]' where x and y are mappers">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_matcher" type="string" use="optional" fixed="Regular expression to extract information to Map">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_matcher" type="string" use="optional" fixed="(.*)">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_mappedTo" type="string" use="optional" fixed="Expression containing information extracted. Example: 'data-$1'">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_mappedTo" type="string" use="optional" fixed="$1">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_bestEfforttIfNoMatch" type="string" use="optional" fixed="When false tells the result value to be empty when matcher does not find any match, or when true the mappers are executed on best effort basis">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_bestEfforttIfNoMatch" type="string" use="optional" fixed="false">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_replaceAll" type="string" use="optional" fixed="When false only first matching pattern will be mappedTo, or when true all matching patterns will be applied">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_replaceAll" type="string" use="optional" fixed="false">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="queryType">
+		<sequence>
+			<element name="queryName" type="string"/>
+			<element name="key" type="string" minOccurs="0"/>
+			<element name="matcher" type="string"/>
+			<element name="mappedTo" type="string"/>
+		</sequence>
+		<attribute name="replaceAll" type="boolean" use="optional" default="false"/>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Cypher Query Configuration">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_queryName" type="string" use="optional" fixed="The CypherQuery name">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_key" type="string" use="optional" fixed="Optional Key attribute to retrieve from the query result">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_matcher" type="string" use="optional" fixed="Regular expression to extract information to Map">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_matcher" type="string" use="optional" fixed="(.*)">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_mappedTo" type="string" use="optional" fixed="Expression containing information extracted. Example: 'data-$1'">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_mappedTo" type="string" use="optional" fixed="$1">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_replaceAll" type="string" use="optional" fixed="When false only first matching pattern will be mappedTo, or when true all matching patterns will be applied">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__default_replaceAll" type="string" use="optional" fixed="false">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+	<complexType name="expressionType">
+		<choice>
+			<element name="booleanExpr" type="string"/>
+			<element name="stringExpr" type="string"/>
+		</choice>
+		<attribute name="__tooltip" type="string" use="optional" fixed="Expression Configuration">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_booleanExpr" type="string" use="optional" fixed="The EML Boolean expression">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_stringExpr" type="string" use="optional" fixed="The EML String expression">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true"/>
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+</schema>

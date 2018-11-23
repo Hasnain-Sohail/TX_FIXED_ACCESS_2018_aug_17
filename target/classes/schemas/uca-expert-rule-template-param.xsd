@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:typens="http://hp.com/uca/expert/engine/template"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	targetNamespace="http://hp.com/uca/expert/engine/template"
+	elementFormDefault="qualified" version="v1-0">
+
+
+	<element name="RuleParametersCollection">
+		<complexType>
+			<sequence>
+				<element name="RuleParameters" maxOccurs="unbounded" type="typens:RuleParameters" />
+			</sequence>
+			<attribute name="__tooltip" type="string"
+				fixed="Collection of Rule parameter. A parameter is a variable replaced by a constant inside the Rule before starting the Scenario"
+				use="optional">
+				<annotation>
+					<appinfo>
+						<jxb:property fixedAttributeAsConstantProperty="true" />
+					</appinfo>
+				</annotation>
+			</attribute>
+		</complexType>
+	</element>
+
+	<complexType name="RuleParameters">
+		<sequence>
+			<element name="parameter" minOccurs="1" maxOccurs="unbounded"
+				type="typens:Parameter" />
+		</sequence>
+		<attribute name="__tooltip" type="string" fixed="List Of Rule Parameters"
+			use="optional">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true" />
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+
+	<complexType name="Parameter">
+		<sequence>
+			<element name="value" type="string" minOccurs="1" maxOccurs="1" />
+		</sequence>
+		<attribute name="name" type="string" use="required" />
+		<attribute name="__tooltip" type="string"
+			fixed="Parameter substituted in Template Rule File" use="optional">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true" />
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_name" type="string"
+			fixed="Variable Name of the parameter. Defined in the Template Rule File"
+			use="optional">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true" />
+				</appinfo>
+			</annotation>
+		</attribute>
+		<attribute name="__tooltip_value" type="string"
+			fixed="Value of the parameter" use="optional">
+			<annotation>
+				<appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true" />
+				</appinfo>
+			</annotation>
+		</attribute>
+	</complexType>
+
+</schema>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd
+          http://www.springframework.org/schema/security
+          http://www.springframework.org/schema/security/spring-security.xsd">
+
+	<!-- The legacy authentication provider : the users DB -->
+	<beans:bean id="usersDbAuthenticationProvider"
+		class="com.hp.uca.expert.ui.server.security.UsersDbAuthenticationProvider" />
+
+	<!-- The LDAP server + the Root DIT for lookups -->
+
+	<!-- Example 1. A standard Apache Directory Server (with LDIF sample) -->
+	<!-- <ldap-server url="ldap://localhost:10389/o=SevenSeas" manager-dn="uid=admin,ou=system" 
+		manager-password="secret" /> -->
+
+	<!-- Example 2. A secured access to Apache Directory Server (with LDIF sample) -->
+	<!-- Make sure to define javax.net.ssl properties with your trusted certificate in uca-ebc.properties -->
+	<!-- <ldap-server url="ldaps://localhost:10636/o=SevenSeas" manager-dn="uid=admin,ou=system" 
+		manager-password="secret" /> -->
+
+	<authentication-manager>
+		<!-- 1st : the legacy users DB -->
+		<authentication-provider ref="usersDbAuthenticationProvider" />
+
+		<!-- 2nd : a simple clear pwd/user provider -->
+		<!-- For security reasons, it's better to comment out this provider -->
+		<authentication-provider>
+			<user-service>
+				<user name="guest" password="guest" authorities="Observer" />
+			</user-service>
+		</authentication-provider>
+
+		<!-- 3rd : the LDAP Data Source -->
+		<!-- Uncomment if you have defined your ldap-server above -->
+		<!-- <ldap-authentication-provider user-search-filter="(uid={0})" user-search-base="ou=people" 
+			group-search-base="ou=groups" group-search-filter="uniqueMember={0}" role-prefix="none" 
+			/> -->
+
+	</authentication-manager>
+
+</beans:beans>
+

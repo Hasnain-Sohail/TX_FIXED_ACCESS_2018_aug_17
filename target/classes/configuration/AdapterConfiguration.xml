@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<adapter name="UCA-EBC" version="1.0" xmlns="http://hp.com/umb/config">
+	<flowServices>
+		<flow name="DB-Flow" type="Dynamic"
+			collectorClass="com.hp.uca.expert.mediation.adapter.UcaDbCollector">
+			<parameters>
+				<parameter key="vp" defaultValue="" />
+				<parameter key="notifier" defaultValue="dbNotifier" />
+				<parameter key="summarize" defaultValue="false" />
+				<parameter key="eligibilityScope" defaultValue="true" />
+			</parameters>
+		</flow>
+	</flowServices>
+	<actionServices>
+		<action name="terminateAlarm" actionClass="com.hp.uca.expert.mediation.adapter.UcaDbActions">
+			<parameters>
+				<parameter key="identifier" mandatory="true" />
+				<parameter key="vp" defaultValue="" />
+				<parameter key="dao" defaultValue="alarmDao" />
+			</parameters>
+		</action>
+		<action name="clearAlarm" inherits="terminateAlarm" actionClass="com.hp.uca.expert.mediation.adapter.UcaDbActions" />
+		<action name="acknowledgeAlarm" inherits="terminateAlarm" actionClass="com.hp.uca.expert.mediation.adapter.UcaDbActions" />
+	</actionServices>
+</adapter>

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:typens="http://hp.com/uca/expert/orchestra/config" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0" targetNamespace="http://hp.com/uca/expert/orchestra/config"
+    elementFormDefault="qualified">
+
+    <xs:element name="OrchestraWorkflow">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Routes" type="typens:Routes" minOccurs="0" maxOccurs="1" />
+            </xs:sequence>
+            <xs:attribute name="__tooltip" type="xs:string" fixed="Orchestration WorkFlow"
+                use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property fixedAttributeAsConstantProperty="true" />
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Routes">
+        <xs:sequence>
+                <xs:element name="Route" type="typens:RouteChoice" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="__tooltip" type="xs:string" fixed="Defines a Set of Routes"
+                use="optional">
+                <xs:annotation>
+                    <xs:appinfo>
+                        <jxb:property fixedAttributeAsConstantProperty="true" />
+                    </xs:appinfo>
+                </xs:annotation>
+            </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="RouteChoice">
+        <xs:choice>
+            <xs:element name="COPY" type="typens:RouteCopy" />
+            <xs:element name="JOIN" type="typens:RouteJoin" />
+        </xs:choice>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="__tooltip" type="xs:string" fixed="Route Definition"
+            use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_name" type="xs:string"
+            fixed="Name of the Route element." use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="RouteCopy">
+        <xs:sequence>
+            <xs:element name="Source" type="typens:ScenarioType" minOccurs="1" maxOccurs="1" />
+            <xs:element name="Destinations" type="typens:Destinations" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="__tooltip" type="xs:string"
+            fixed="Copy an alarm to a set of Destinations scenarios" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_Source" type="xs:string"
+            fixed="Source scenario"
+            use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_Destinations" type="xs:string"
+            fixed="list of Destination Scenarios"
+            use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="RouteJoin">
+        <xs:sequence>
+            <xs:element name="Sources" type="typens:Sources" minOccurs="1" maxOccurs="1" />
+            <xs:element name="ExpireTime" type="xs:long" minOccurs="1" maxOccurs="1" />
+            <xs:element name="Destination" type="typens:Destination" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="__tooltip" type="xs:string"
+            fixed="Agregate alarms from a set of source scenarios" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_Sources" type="xs:string"
+            fixed="List of Source scenarios"
+            use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_ExpireTime" type="xs:string"
+            fixed="Join Expiration time"
+            use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_Destination" type="xs:string"
+            fixed="Destination Scenario"
+            use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="ScenarioType">
+        <xs:sequence>
+            <xs:element name="ValuePackNameVersion" type="xs:string" />
+            <xs:element name="ScenarioName" type="xs:string" />
+        </xs:sequence>
+
+        <xs:attribute name="__tooltip" type="xs:string" fixed="Identifies a Scenario" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_ValuePackNameVersion" type="xs:string" fixed="Valuepack Name-Version" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_ScenarioName" type="xs:string" fixed="Scenario Name" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__dynamicList_ScenarioName" type="xs:string" fixed="scenarioList_ValuePackNameVersion" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__dynamicList_ValuePackNameVersion" type="xs:string" fixed="valuePackList" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Sources">
+        <xs:sequence>
+            <xs:element name="Source" type="typens:ScenarioType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="__tooltip" type="xs:string" fixed="List of source scenarios" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Destinations">
+        <xs:sequence>
+            <xs:element name="Destination" type="typens:Destination" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="__tooltip" type="xs:string" fixed="List of Destinations" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:complexType name="Destination">
+        <xs:sequence>
+            <xs:element name="Filter" type="typens:Filter" minOccurs="0" maxOccurs="1" />
+            <xs:element name="Target" type="typens:ScenarioType" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+         <xs:attribute name="__tooltip" type="xs:string" fixed="Destination scenario" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_Filter" type="xs:string" fixed="Filter Name" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="__tooltip_Target" type="xs:string" fixed="Target Scenario" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+    
+    <xs:complexType name="Filter">
+        <xs:sequence>
+            <xs:element name="filterName" type="xs:string" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+         <xs:attribute name="__tooltip" type="xs:string" fixed="Filter reference" use="optional">
+            <xs:annotation>
+                <xs:appinfo>
+                    <jxb:property fixedAttributeAsConstantProperty="true" />
+                </xs:appinfo>
+            </xs:annotation>
+        </xs:attribute>   
+		<xs:attribute name="__tooltip_filterName" type="xs:string"
+			fixed="Defines the Filter the Alarm has to pass to be copied to the target Scenario" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true" />
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="__dynamicList_filterName"
+			type="xs:string" fixed="orchestraFilterList" use="optional">
+			<xs:annotation>
+				<xs:appinfo>
+					<jxb:property fixedAttributeAsConstantProperty="true" />
+				</xs:appinfo>
+			</xs:annotation>
+		</xs:attribute>			
+    </xs:complexType>
+
+    <xs:simpleType name="Method">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="COPY" />
+            <xs:enumeration value="JOIN" />
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

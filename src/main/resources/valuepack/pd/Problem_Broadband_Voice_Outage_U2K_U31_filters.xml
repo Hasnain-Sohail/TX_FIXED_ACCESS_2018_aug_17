@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filters xmlns="http://hp.com/uca/expert/filter">
+	<topFilter name="Problem_Broadband_Voice_Outage_U2K_U31"
+		tagsGroup="ProblemDetection,AvailableTroubleTickets">
+		<anyCondition>
+			<anyCondition tag="PATTERN_Triggers">
+				<anyCondition
+					tag="Trigger,SubAlarm
+					,ComputeProblemEntityMappers=retrieveNE_Type_FC_BB																							
+	                ,ProblemAlarm.Creation.ReferenceAlarm=Trigger
+	                ,Customized.defaultFC=NOC.FO.NATIONAL.SWITCHING
+	                ,Customized.defaultAlarmClassification=Outage
+	                ,Customized.Technology=retrieveNE_Type_BB
+	                ,Customized.NE_Name=retrieveNEName_BB
+	                ,ProblemAlarm.Creation.AdditionalText=${Trigger.mapper.retrieveAll_Addt}
+	               	,ProblemAlarm.Clearance.Condition=TriggersAreClearedOrTerminated
+	                ,ProblemAlarm.Termination.Policy=ToAll
+	                "> <!--  ,ProblemAlarm.Creation.AdditionalText=${Trigger.mapper.retrievePrefixATBeforeNATIVE_CAUSE}${Parameter.nativeCause}${Trigger.mapper.retrieveSuffixATAfterNATIVE_CAUSE_Flag}
+	                -->
+					<allCondition>	
+						<stringFilterStatement>
+							<fieldName>additionalText</fieldName>
+							<operator>doesNotContain</operator>
+							<fieldValue>NLOD</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+							<fieldName>additionalText</fieldName>
+							<operator>doesNotContain</operator>
+							<fieldValue>TEST</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+							<fieldName>additionalText</fieldName>
+							<operator>doesNotContain</operator>
+							<fieldValue>ProductName=UA5000(PVMV1)</fieldValue>
+						</stringFilterStatement>					
+						<stringFilterStatement>
+							<fieldName>additionalText</fieldName>
+							<operator>contains</operator>
+							<fieldValue>@NATIVE_CAUSE</fieldValue>
+						</stringFilterStatement>
+						
+	           			<stringFilterStatement >
+	                		<fieldName>additionalText</fieldName>
+	                		<operator>doesNotContain</operator>
+	               			<fieldValue>alarmNetype=C320v1.3</fieldValue>
+	           			</stringFilterStatement>
+						<anyCondition>
+							<stringFilterStatement tag="Customized.Communication_failed">
+								<fieldName>additionalText</fieldName>
+								<operator>contains</operator>
+								<fieldValue>The link between the server and the NE is broken</fieldValue>
+							</stringFilterStatement>
+							<stringFilterStatement tag="Customized.Communication_failed">
+								<fieldName>additionalText</fieldName>
+								<operator>contains</operator>
+								<fieldValue>Communication with the device failed</fieldValue>
+							</stringFilterStatement>
+							<stringFilterStatement tag="Customized.Link_down">
+								<fieldName>additionalText</fieldName>
+								<operator>contains</operator>
+								<fieldValue>H248 Linkdown</fieldValue>
+							</stringFilterStatement>
+							<stringFilterStatement tag="Customized.Link_down">
+								<fieldName>additionalText</fieldName>
+								<operator>contains</operator>
+								<fieldValue>H248 interface interruption</fieldValue>
+							</stringFilterStatement>
+						</anyCondition>
+						
+						
+						<!-- In case of Outage -->
+                        <anyCondition>
+							<notCondition>
+								<isPresentFilterStatement>
+									<fieldName>changeId</fieldName>
+								</isPresentFilterStatement>
+							</notCondition>
+							<notCondition>
+								<stringFilterStatement>
+									<fieldName>changeId</fieldName>
+									<operator>matches</operator>
+									<fieldValue>\S+</fieldValue>
+								</stringFilterStatement>
+							</notCondition>
+						</anyCondition>
+												
+						<!-- Exclude all PA alarms -->
+						<notCondition>
+							<stringFilterStatement>
+								<fieldName>userText</fieldName>
+								<operator>matches</operator>
+								<fieldValue><![CDATA[(?s).*<action>UCA EBC .*</action><trigger>.*</trigger><group>.*</group>.*]]></fieldValue>
+							</stringFilterStatement>
+						</notCondition>
+					</allCondition>
+				</anyCondition>
+			</anyCondition>
+
+			<anyCondition tag="PATTERN_ProblemAlarms">
+				<anyCondition tag="ProblemAlarm">
+					<allCondition>
+						<stringFilterStatement>
+							<fieldName>userText</fieldName>
+							<operator>matches</operator>
+							<fieldValue><![CDATA[(?s).*<trigger>.*</trigger><group><p>Problem_Broadband_Voice_Outage_U2K_U31</p>.*</group>.*]]></fieldValue>
+						</stringFilterStatement>
+					</allCondition>
+				</anyCondition>
+			</anyCondition>
+		</anyCondition>
+	</topFilter>
+
+</filters>

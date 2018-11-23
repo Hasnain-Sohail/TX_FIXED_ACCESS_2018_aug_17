@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- See documentation @ http://mybatis.github.io/mybatis-3/configuration.html -->
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.hp.uca.expert.store.sql.CustomFieldsTypeHandler" alias="CustomFieldsTypeHandler"/>
+		<typeAlias type="com.hp.uca.expert.store.sql.StoredAttributeChangesTypeHandler" alias="StoredAttributeChangesTypeHandler"/>
+		<typeAlias type="com.hp.uca.expert.alarm.store.AttributeChangesMapper" alias="AttributeChangesMapper"/>
+		<typeAlias type="com.hp.uca.expert.store.mappers.AlarmCreationMapper" alias="AlarmCreationMapper"/>
+		<typeAlias type="com.hp.uca.expert.store.mappers.AlarmDeletionMapper" alias="AlarmDeletionMapper"/>
+		<typeAlias type="com.hp.uca.expert.store.mappers.EventCreationMapper" alias="EventCreationMapper"/>
+		<typeAlias type="com.hp.uca.expert.store.sql.SqlCondition" alias="SqlCondition"/>
+	</typeAliases>
+	<typeHandlers>
+		<typeHandler handler="com.hp.uca.expert.store.sql.CustomFieldsTypeHandler" javaType="com.hp.uca.expert.x733alarm.CustomFields" jdbcType="VARCHAR"/>
+		<typeHandler handler="com.hp.uca.expert.store.sql.StoredAttributeChangesTypeHandler" javaType="com.hp.uca.expert.alarm.store.StoredAttributeChanges" jdbcType="VARCHAR"/>
+		<typeHandler handler="com.hp.uca.expert.store.sql.BasicEventTypeHandler" javaType="com.hp.uca.expert.event.BasicEvent" jdbcType="VARCHAR"/>
+	</typeHandlers>
+    <mappers>
+        <mapper resource="jdbc/sql-alarms-mapper.xml" />
+        <mapper resource="jdbc/sql-events-mapper.xml" />
+        <mapper resource="jdbc/sql-states-mapper.xml" />
+    </mappers>
+</configuration>

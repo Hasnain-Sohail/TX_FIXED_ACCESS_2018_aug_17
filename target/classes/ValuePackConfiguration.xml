@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<valuePackConfiguration xmlns="http://hp.com/uca/expert/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	name="__PROJECT_NAME__" version="__PROJECT_VERSION__">
+	
+	
+	<scenarios>
+		<scenario name="com.hp.uca.expert.vp.pd.ProblemDetection">
+			<actionRetractedAutomaticallyWhenCompleted>true</actionRetractedAutomaticallyWhenCompleted>
+<!-- 			<alarmEligibilityPolicy><![CDATA[(ProblemState == "HANDLED") || (  ProblemState == "NOT_HANDLED"  && (OperatorState != "TERMINATED" && NetworkState != "CLEARED") )]]></alarmEligibilityPolicy> -->
+			<alarmEligibilityPolicy><![CDATA[(OperatorState != "TERMINATED" && NetworkState != "CLEARED")]]></alarmEligibilityPolicy>	
+			<asyncActionPeriod>1000</asyncActionPeriod>
+			<clockTypeMode>NORMAL</clockTypeMode>
+			<filterFiles>
+				<filterFile>src/main/resources/valuepack/pd/Problem_U31_POWER_ONU_MSAG_DC_EW.xml</filterFile>
+				<filterFile>src/main/resources/valuepack/pd/Problem_U2000_POWER_ONU_MSAG_DC_EW.xml</filterFile>
+				<filterFile>src/main/resources/valuepack/pd/Problem_U31_U2K_Card_Fault_EW.xml</filterFile>
+				<filterFile>src/main/resources/valuepack/pd/Problem_Broadband_Voice_Outage_U2K_U31_filters.xml</filterFile>
+				<filterFile>src/main/resources/valuepack/pd/Problem_Broadband_Voice_Outage_U2K_U31_Entity_filters.xml</filterFile>
+ 				<filterFile>src/main/resources/valuepack/pd/Problem_ZTE_TXM_Access_Fiber_Cut.xml</filterFile> 
+ 				<filterFile>src/main/resources/valuepack/pd/Problem_HW_TXM_Access_Fiber_Cut.xml</filterFile> 
+ 				<filterFile>src/main/resources/valuepack/pd/Problem_EW_U31_Temp_Alarm.xml</filterFile> 
+				<filterFile>src/main/resources/valuepack/pd/Problem_U31_Cabinet_Door_Opened.xml</filterFile>
+				<filterFile>src/main/resources/valuepack/pd/Problem_Door_Open_Early_warning_filters.xml</filterFile>
+				<filterFile>src/main/resources/valuepack/pd/Problem_EW_U2000_Temp_Alarm_filters.xml</filterFile>  
+				<filterFile>src/main/resources/valuepack/pd/Problem_Tx_NOKIA_FiberCut.xml</filterFile>
+				<!-- <filterFile>src/main/resources/valuepack/pd/Problem_TXM_CUST_NODE_OUTAGE.xml</filterFile>  -->
+				
+			</filterFiles>
+			<filterTagsFile>src/main/resources/valuepack/pd/ProblemDetection_filtersTags.xml</filterTagsFile>
+			<mapperFile>src/main/resources/valuepack/pd/ProblemDetection_mappers.xml</mapperFile>					
+			<fireAllRulePeriod>1000</fireAllRulePeriod>
+			<fireAllRulesDuringResynchronization>false</fireAllRulesDuringResynchronization>
+			<fireAllRulesPolicy>WATCHDOG</fireAllRulesPolicy>
+			<globals></globals>
+			<processingMode>CLOUD</processingMode>
+			<rulesFiles>
+				<rulesFile>
+					<filename>file:./src/main/resources/valuepack/pd/ProblemDetection_Rules.pkg</filename>
+					<name>Problem Detection Rules</name>
+					<ruleFileType>PKG</ruleFileType>
+				</rulesFile>
+			</rulesFiles>
+			<tickPeriod>30000</tickPeriod>
+ 			<customLifeCycleClass>com.hp.uca.expert.vp.pd.im.lifecycle.PTCL_InferenceMachineLifeCycleExtended</customLifeCycleClass>			<customInitializationClass>com.hp.uca.expert.vp.pd.core.PD_Initialization</customInitializationClass>
+			<compressionMode>true</compressionMode>
+			<compressionPeriod>1000</compressionPeriod>
+		</scenario>	
+			
+	</scenarios>
+	<mediationFlows >
+    	
+    	<UMBmediationFlow name="temipFlow1"  automaticStart="true"  targetAdapterName="TeMIP1"  targetFlowName="TeMIPDynamicFlow" >
+    		<flowParameters>
+				<flowParameter key="operationContext"  value="maccess_u2kisb_02" />
+				<flowParameter key="operationContext"  value="ngn_u31isb_03" />
+				<flowParameter key="operationContext"  value="mmbb_u31isb_04" />
+				<flowParameter key="operationContext"  value="uca_test2" />
+	   		</flowParameters>
+    	</UMBmediationFlow>	
+    	
+    	<UMBmediationFlow name="temipFlow2"  automaticStart="true"  targetAdapterName="TeMIP2"  targetFlowName="TeMIPDynamicFlow" >
+    		<flowParameters>
+				<flowParameter key="operationContext"  value="lh_nokia" />
+				<flowParameter key="operationContext"  value="metro_nokia_ilb" />
+	   		</flowParameters>
+    	</UMBmediationFlow>
+    	
+	</mediationFlows>
+	
+</valuePackConfiguration>

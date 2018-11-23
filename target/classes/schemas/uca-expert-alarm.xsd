@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:tns="http://hp.com/uca/expert/x733Alarm" xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://hp.com/uca/expert/x733Alarm" elementFormDefault="qualified" version="1.0">
+
+    <!--                      -->
+    <!--  ELEMENTS DEFINITION -->
+    <!--                      -->
+
+    <!-- This XSD is used in UCA Expert with no automatic XSD validation -->
+
+    <xs:element name="AlarmAttributeValueChangeInterface">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:alarmCommonAttributesInterface">
+                    <xs:sequence>
+                        <xs:element ref="tns:attributeChanges" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AlarmCreationInterface">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:alarmCommonAttributesInterface"/>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AlarmStateChangeInterface">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:alarmCommonAttributesInterface">
+                    <xs:sequence>
+                        <xs:element ref="tns:attributeChanges" minOccurs="0"/>
+                        <xs:element ref="tns:clearanceAlarmIdentifierList" minOccurs="0"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="AlarmDeletionInterface">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:alarmBaseInterface">
+                    <xs:sequence>
+                        <xs:element name="originatingManagedEntity" type="xs:string"/>
+                        <xs:element ref="tns:originatingManagedEntityStructure" minOccurs="0"/>
+                        <xs:element name="sourceIndicator" type="xs:string" minOccurs="0"/>
+                        <xs:element name="operatorState" type="tns:OperatorState" default="NOT_ACKNOWLEDGED" minOccurs="0"/>                                    
+                        <xs:element name="additionalText" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Alarms">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:choice minOccurs="0" maxOccurs="unbounded">
+                    <xs:element ref="tns:AlarmDeletionInterface"/>
+                    <xs:element ref="tns:AlarmAttributeValueChangeInterface"/>
+                    <xs:element ref="tns:AlarmCreationInterface"/>
+                    <xs:element ref="tns:AlarmStateChangeInterface"/>
+                    <xs:element ref="tns:EndSynchronizationInterface"/>
+                    <xs:element ref="tns:BeginSynchronizationInterface"/>
+                </xs:choice>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="BeginSynchronizationInterface">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:alarmBaseInterface">
+                    <xs:sequence>
+                        <xs:element name="sourceIdentifier" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="EndSynchronizationInterface">
+        <xs:complexType>
+            <xs:complexContent>
+                <xs:extension base="tns:alarmBaseInterface">
+                    <xs:sequence>
+                        <xs:element name="sourceIdentifier" type="xs:string"/>
+                    </xs:sequence>
+                </xs:extension>
+            </xs:complexContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="alarmIdentifier">
+        <xs:complexType>
+            <xs:sequence/>
+            <xs:attribute name="id" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attributeChange">
+        <xs:complexType>
+            <xs:sequence/>
+            <xs:attribute name="oldValue" type="xs:string" use="required"/>
+            <xs:attribute name="newValue" type="xs:string" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="attributeChanges">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:attributeChange" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="classInstance">
+        <xs:complexType>
+            <xs:sequence/>
+            <xs:attribute name="instance" type="xs:string"/>
+            <xs:attribute name="clazz" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="clearanceAlarmIdentifierList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:alarmIdentifier" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="customField">
+        <xs:complexType>
+            <xs:sequence/>
+            <xs:attribute name="value" type="xs:string" use="required"/>
+            <xs:attribute name="name" type="xs:string" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="customFields">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:customField" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="originatingManagedEntityStructure">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="tns:classInstance" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="alarmBaseInterface">
+        <xs:sequence>
+            <xs:element name="identifier" type="xs:string"/>
+            <xs:element name="sourceIdentifier" type="xs:string"/>          
+            <xs:element name="alarmRaisedTime" type="xs:dateTime" minOccurs="0"/>
+            <xs:element name="targetValuePack" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="alarmCommonAttributesInterface">
+        <xs:complexContent>
+            <xs:extension base="tns:alarmBaseInterface">
+                <xs:sequence>
+                    <xs:element name="originatingManagedEntity" type="xs:string" minOccurs="0" />
+                    <xs:element ref="tns:originatingManagedEntityStructure" minOccurs="0" />
+                    <xs:element name="sourceIndicator" type="xs:string" minOccurs="0"/>
+                    <xs:element name="alarmType" type="tns:AlarmType" minOccurs="0" />
+                    <xs:element name="probableCause" type="xs:string" minOccurs="0" />
+                    <xs:element name="perceivedSeverity" type="tns:PerceivedSeverity" minOccurs="0" />
+                    <xs:element name="networkState" type="tns:NetworkState" default="NOT_CLEARED" minOccurs="0" />
+                    <xs:element name="operatorState" type="tns:OperatorState" default="NOT_ACKNOWLEDGED" minOccurs="0" />
+                    <xs:element name="problemState" type="tns:ProblemState" default="NOT_HANDLED" minOccurs="0" />
+                    <xs:element name="problemInformation" type="xs:string" minOccurs="0" />
+                    <xs:element name="specificProblem" type="xs:string" minOccurs="0" />
+                    <xs:element name="additionalInformation" type="xs:string" minOccurs="0" />
+                    <xs:element name="additionalText" type="xs:string" minOccurs="0" />
+                    <xs:element name="proposedRepairActions" type="xs:string" minOccurs="0" />
+                    <xs:element name="notificationIdentifier" type="xs:string" minOccurs="0" />
+                    <xs:element name="correlationNotificationIdentifiers" type="xs:string" minOccurs="0" />
+                    <xs:element name="parents" type="xs:string" minOccurs="0" />
+                    <xs:element name="children" type="xs:string" minOccurs="0" />
+                    <xs:element ref="tns:customFields" minOccurs="0" />
+                    <xs:element name="alarmAdditionalData" type="xs:string" minOccurs="0" />
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:simpleType name="AlarmType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UNKNOWN_ALARM_TYPE"/>
+            <xs:enumeration value="COMMUNICATIONS_ALARM"/>
+            <xs:enumeration value="PROCESSING_ERROR_ALARM"/>
+            <xs:enumeration value="ENVIRONMENTAL_ALARM"/>
+            <xs:enumeration value="QUALITY_OF_SERVICE_ALARM"/>
+            <xs:enumeration value="EQUIPMENT_ALARM"/>
+            <xs:enumeration value="INTEGRITY_VIOLATION"/>
+            <xs:enumeration value="OPERATIONAL_VIOLATION"/>
+            <xs:enumeration value="PHYSICAL_VIOLATION"/>
+            <xs:enumeration value="SECURITY_VIOLATION"/>
+            <xs:enumeration value="TIME_DOMAIN_VIOLATION"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="PerceivedSeverity">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="INDETERMINATE"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="MINOR"/>
+            <xs:enumeration value="MAJOR"/>
+            <xs:enumeration value="CRITICAL"/>
+            <xs:enumeration value="CLEAR"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="NetworkState">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_CLEARED"/>
+            <xs:enumeration value="CLEARED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="OperatorState">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_ACKNOWLEDGED"/>
+            <xs:enumeration value="ACKNOWLEDGED"/>
+            <xs:enumeration value="TERMINATED"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="ProblemState">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NOT_HANDLED"/>
+            <xs:enumeration value="HANDLED"/>
+            <xs:enumeration value="CLOSED"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

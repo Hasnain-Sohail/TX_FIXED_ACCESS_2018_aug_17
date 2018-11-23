@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uca:Alarms xmlns:uca="http://hp.com/uca/expert/x733Alarm"
+	xmlns="http://hp.com/uca/expert/x733Alarm">
+	<AlarmCreationInterface xmlns="http://hp.com/uca/expert/x733Alarm">
+		<!-- HTML escape character  &lt; &gt;&amp;&quot;&copy;
+	                           map:  <，  >，  &，   "，      ©; 
+	                           e.g.  <ALM_ID>=&lt;ALM_ID&gt; -->
+		<identifier>OPERATION_CONTEXT ihvtfs01_ns:.Nat_IPTV_Huawei alarm_object 11055193</identifier>
+		<sourceIdentifier>TeMIP EMS</sourceIdentifier>
+		<originatingManagedEntity><![CDATA[OVO_NODE ihvtfs01_ns:."119.156.201.165"]]></originatingManagedEntity>
+		<alarmType>PROCESSING_ERROR_ALARM</alarmType>
+		<probableCause>Unknown</probableCause>
+		<perceivedSeverity>MAJOR</perceivedSeverity>		
+		<networkState>NOT_CLEARED</networkState>
+		<operatorState>NOT_ACKNOWLEDGED</operatorState>
+		<problemState>NOT_HANDLED</problemState>
+		<problemInformation></problemInformation>
+		<additionalInformation></additionalInformation>
+		<additionalText><![CDATA["@CI=BB:169,IPTV:16@SA=@Priority=10@FC=FC.REGIONAL.TXM.LTRN.MMBB@Outage_Flag=@NE_Name=LTS.LHR.Gulberg1.DSLAM.01:bAlarmName:The communication between the board and the control fails. | AlarmType:Equipment | DeviceType:MA5600V3 | DeviceIP:119.156.201.165 | LocationInfo:Frame=0 Slot=9 | AlarmDescription:<msgdef> 
+                                          Message Group = SNMP 
+                                          Application = HuaWei U2000 
+                                          Object = MA5600V3 
+                                          <ALM_ID>5fa6ac74-0652-71e8-0e99-c0a801060000<ALM_ID> 
+                                          PA_ID=:: 
+                                          %%%EMS_DOMAIN=MMnBB@EMS_VENDOR=Huawei@EMS_REGION=North@EMS_LOCATION=Ops ISB 
+                                          H-9@FRIENDLY_NAME=119.156.201.165; 
+                                          SNMP;LTS.LHR.Gulberg1.DSLAM.01@NATIVE_CAUSE=H.248 Linkdown+++ 
+                                          @IP_Lookup:119.156.201.165. 
+                                          @EMS_Info_lookup=119.156.201.165"""
+                                          ]]></additionalText>
+		<parents></parents>
+		<parents></parents>
+		<customFields>			
+			<customField name="alarmName" value="" />
+			<customField name="fc" value="FC1" />
+			<customField name="technology" value="UMG" />
+			<customField name="neName" value="KTPR203" />
+		</customFields>
+	</AlarmCreationInterface>
+	
+
+		
+</uca:Alarms>

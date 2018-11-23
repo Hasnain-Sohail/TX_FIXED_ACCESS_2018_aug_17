@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+            <classpathentry kind="src" path="src/main/java"/>
+            <classpathentry kind="src" path="src/test/java"/>
+            <classpathentry excluding="valuepack/conf/" kind="src" path="src/main/resources"/>
+            <classpathentry kind="src" path="src/main/resources/valuepack/conf"/>
+            <classpathentry kind="src" path="src/test/resources"/>
+            <classpathentry excluding="**/.jar" kind="src" path="UCAEBCresources"/>
+        
+       <classpathentry kind="lib" path="lib\complex-string-utils-1.4.6.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="lib\uca-evp-im-common-3.4.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-evp-im-common-3.4.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="lib\uca-evp-pd-fwk-3.4.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-evp-pd-fwk-3.4.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="lib\uca-mediation-exec-mvp-mapper-keys-3.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-mediation-exec-mvp-mapper-keys-3.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="lib\uca-mediation-temip-mvp-mapper-keys-3.3.2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\FastInfoset-1.2.12.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activation-1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-broker-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-client-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-jaas-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-jms-pool-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-kahadb-store-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-openwire-legacy-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-pool-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-protobuf-1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\activemq-spring-5.9.0-nom-5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\antlr-2.7.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\antlr-3.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\antlr-runtime-3.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\antlr4-runtime-4.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\aopalliance-1.0.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\asm-3.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\aspectjrt-1.6.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\aspectjweaver-1.6.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\autopassj-common-8.2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\autopassj-core-8.2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\autopassj-crypto-8.2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\avro-1.7.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\bcprov-jdk16-140.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\classworlds-1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-beanutils-1.9.2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-codec-1.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-collections-3.2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-compress-1.4.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-configuration-1.10.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-dbcp-1.4.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-io-2.4.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-jexl-2.1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-lang-2.6.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-logging-1.1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-net-3.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\commons-pool-1.6.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\complex-string-utils-1.4.6.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\concurrentlinkedhashmap-lru-1.3.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\config-0.5.2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\dom4j-1.6.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\drools-compiler-5.6.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\drools-core-5.6.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\drools-decisiontables-5.6.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\drools-templates-5.6.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\ecj-4.4.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\geronimo-j2ee-management_1.1_spec-1.0.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\geronimo-jms_1.1_spec-1.1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\geronimo-jta_1.1_spec-1.1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\geronimo-spec-jta-1.0.1B-rc4.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\gmbal-api-only-3.1.0-b001.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\h2-1.3.174.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\ha-api-3.1.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\hamcrest-core-1.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\hawtbuf-1.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\hazelcast-3.5.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\hazelcast-client-3.5.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\hsqldb-1.8.0.10.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\istack-commons-runtime-2.16.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jackson-annotations-2.6.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jackson-core-2.6.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jackson-core-asl-1.9.13.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jackson-databind-2.6.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jackson-jaxrs-1.9.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jackson-mapper-asl-1.9.13.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\janino-2.5.10.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\javax.annotation-api-1.2-b03.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\javax.xml.soap-api-1.3.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jaxb-api-2.2.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jaxb-core-2.2.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jaxb-impl-2.2.6.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jaxws-api-2.2.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jaxws-rt-2.2.8.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jbpm-bpmn2-5.5.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jbpm-flow-5.5.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jbpm-flow-builder-5.5.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jcl-over-slf4j-1.7.19.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jdbcappender-3.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jersey-client-1.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jersey-core-1.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jersey-multipart-1.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jersey-server-1.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jetty-6.1.25.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jetty-naming-6.1.25.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jetty-plus-6.1.25.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jetty-util-6.1.25.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jsr181-api-1.0-MR1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jsr250-api-1.0.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\jsr311-api-1.1.2.r612.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\junit-4.11.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\knowledge-api-5.6.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\knowledge-internal-api-5.6.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\kpi-2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\log-utils-3.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\log4j-1.2.17.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\lucene-core-3.6.2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\mail-1.4.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\management-api-3.0.0-b012.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\mimepull-1.9.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\mvel2-2.1.8.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\mybatis-3.2.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\mybatis-spring-1.2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-advanced-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-backup-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-cluster-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-com-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-community-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-consistency-check-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-cypher-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-enterprise-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-ha-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-jmx-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-kernel-1.9.9-tests.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-kernel-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-lucene-index-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-management-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-rest-graphdb-1.9.9-HPE-SNAPSHOT.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-server-1.9.9-static-web.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-server-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-server-advanced-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-server-enterprise-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\neo4j-shell-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\netty-3.7.0.Final.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\opencsv-2.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\org.apache.servicemix.bundles.jline-0.9.94_1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\paranamer-2.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\poi-3.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\poi-ooxml-3.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\poi-ooxml-schemas-3.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\policy-2.3.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\protobuf-java-2.5.0.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\relaxngDatatype-20020414.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\resolver-20050927.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\rhino-1.7R3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\rrd4j-2.0.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\saaj-api-1.3.4.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\saaj-impl-1.3.20.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\scala-library-2.10.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\scala-reflect-2.10.0.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\scalalogging-slf4j_2.10-1.0.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\server-api-1.9.9.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\servlet-api-2.5-20081211.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\slf4j-api-1.7.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\slf4j-log4j12-1.7.7.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\snappy-java-1.0.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-aop-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-asm-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-beans-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-context-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-context-support-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-core-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-expression-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-jdbc-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-jms-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-orm-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-oxm-1.5.10.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-test-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-tx-3.1.3.RELEASE.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\spring-xml-1.5.10.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\stax-api-1.0-2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\stax-api-1.0.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\stax-ex-1.7.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\stax2-api-3.1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\streambuffer-1.5.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\stringtemplate-3.2.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-common-4.0-UMB-1.1.5.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-common-4.0-UMB-1.1.5-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-ebc-topology-3.4.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-ebc-topology-3.4-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-ebc-topology-dataload-3.4.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-eml-eval-3.4.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-evp-im-common-3.4.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-evp-im-common-3.4.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-evp-pd-fwk-3.4.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-evp-pd-fwk-3.4.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-evp-pd-remedy-1.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-evp-tsp-fwk-3.4.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-evp-tsp-fwk-3.4.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-expert-engine-3.4.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-mediation-action-client-3.3.1.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-mediation-action-client-3.3.1-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-mediation-exec-mvp-mapper-keys-3.3.jar">   
+                    <attributes>
+                    <attribute name="javadoc_location" value="jar:file:/C:\UCA-EBC-DEV\3.4\/apidoc/uca-mediation-exec-mvp-mapper-keys-3.3-javadoc.jar!/"/>
+                    </attributes>   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\uca-mediation-temip-mvp-mapper-keys-3.3.2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\umb-adapter-fmk-1.1.5.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\woodstox-core-asl-4.1.2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xbean-spring-3.11.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xml-apis-1.0.b2.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xmlbeans-2.5.0.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xmlpull-1.1.3.1.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xpp3_min-1.1.4c.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xsom-20100725.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xstream-1.4.3.jar">   
+        </classpathentry>
+       <classpathentry kind="lib" path="C:\UCA-EBC-DEV\3.4\lib\xz-1.0.jar">   
+        </classpathentry>
+   <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+            <classpathentry kind="output" path="target/classes"/>
+</classpath>

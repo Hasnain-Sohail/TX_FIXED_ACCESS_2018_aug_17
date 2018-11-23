@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:typens="http://hp.com/uca/expert/filter/tags"
+	xmlns:jxb="http://java.sun.com/xml/ns/jaxb" jxb:version="2.0"
+	targetNamespace="http://hp.com/uca/expert/filter/tags"
+	elementFormDefault="qualified" version="v1.0">
+
+	<element name="tags">
+		<complexType>
+			<sequence>
+				<element name="groups" type="typens:groupsType" />
+				<element name="fields" type="typens:fieldsType"
+					minOccurs="0" maxOccurs="1" />
+			</sequence>
+		</complexType>
+	</element>
+
+	<complexType name="groupsType">
+		<sequence>
+			<element name="group" type="typens:groupType"
+				minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+	
+	<complexType name="groupType">
+		<sequence>
+			<element name="simpleTags" type="typens:simpleTagsType"
+					minOccurs="0" maxOccurs="1" />
+			<element name="paramTags" type="typens:paramTagsType"
+					minOccurs="0" maxOccurs="1" />
+		</sequence>
+		<attribute name="name">
+			<simpleType>
+				<restriction base="string" />
+			</simpleType>
+		</attribute>
+	</complexType>
+	
+	<complexType name="simpleTagsType">
+		<sequence>
+			<element name="simpleTag" type="typens:simpleTagType"
+				minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="simpleTagType">
+		<attribute name="name" use="required">
+			<simpleType>
+				<restriction base="string" />
+			</simpleType>
+		</attribute>
+		<attribute name="tooltip"/>
+		<attribute name="type"/>
+	</complexType>
+
+	<complexType name="paramTagsType">
+		<sequence>
+			<element name="paramTag" type="typens:paramTagType"
+				minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	<complexType name="paramTagType">
+		<attribute name="name" use="required">
+			<simpleType>
+				<restriction base="string" />
+			</simpleType>
+		</attribute>
+		<attribute name="enum" use="optional">
+			<simpleType>
+				<restriction base="string" />
+			</simpleType>
+		</attribute>
+		<attribute name="type"/>
+		<attribute name="default"/>
+		<attribute name="tooltip"/>
+		<attribute name="use"/>
+		<attribute name="strict"/>
+	</complexType>
+
+	<complexType name="fieldsType">
+		<sequence>
+			<element name="field" type="typens:paramTagType"
+				minOccurs="1" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+</schema>

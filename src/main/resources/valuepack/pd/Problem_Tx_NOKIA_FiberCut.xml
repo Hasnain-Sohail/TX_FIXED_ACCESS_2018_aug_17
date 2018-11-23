@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<filters xmlns="http://hp.com/uca/expert/filter">
+	<topFilter name="Problem_Tx_NOKIA_FiberCut"
+		tagsGroup="ProblemDetection,GraphDB,AvailableTroubleTickets">
+		<anyCondition>
+			<anyCondition tag="PATTERN_Triggers">
+				<anyCondition
+					tag="Trigger,SubAlarm																							
+	                ,ProblemAlarm.Creation.ReferenceAlarm=Trigger
+	                ,Customized.Mapper.AEnd_From=retrieveNokiaAEndFrom
+	                ,Customized.Mapper.ZEnd_To=retrieveNokiaZEndTo
+	                ,ProblemAlarm.Creation.Other.Attributes=Alarm_Name/retrieveNewNATIVE_CAUSE_NOKIA_FC 
+	                ,ProblemAlarm.Creation.AdditionalText=${Trigger.mapper.retrieveAll_Addt}                   	               	              				              	               	              				               
+	                ,ProblemAlarm.Clearance.Condition=TriggersAreClearedOrTerminated
+	                ,ProblemAlarm.Termination.Policy=ToAll
+	                ,Customized.defaultFC=retrieveFC_NOC_FO_NATIONAL_TXM  
+	                ,Customized.defaultAlarmClassification=Non-Outage           	               	              				              	               	              			
+	                ">
+					<allCondition>
+					<stringFilterStatement>
+									<fieldName>additionalText</fieldName>
+									<operator>doesNotContain</operator>
+									<fieldValue>NLOD</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+									<fieldName>additionalText</fieldName>
+									<operator>doesNotContain</operator>
+									<fieldValue>TEST</fieldValue>
+						</stringFilterStatement>
+						<!-- <stringFilterStatement>
+								<fieldName>alarmName</fieldName>
+								<operator>contains</operator>
+								<fieldValue>LD Input LOS</fieldValue>
+						</stringFilterStatement> -->
+						<anyCondition>
+							<stringFilterStatement>
+								<fieldName>alarmName</fieldName>
+								<operator>isEqual</operator>
+								<fieldValue>APRLINE</fieldValue>
+							</stringFilterStatement>
+							<stringFilterStatement>
+								<fieldName>alarmName</fieldName>
+								<operator>isEqual</operator>
+								<fieldValue>LOS</fieldValue>
+							</stringFilterStatement>				
+						</anyCondition>
+						<anyCondition>
+							<stringFilterStatement>
+								<fieldName>identifier</fieldName>
+								<operator>matches</operator>
+								<fieldValue>(?i)[\d\D]*OPERATION_CONTEXT [\d\D]*LH_NOKIA alarm_object [\d\D]*</fieldValue>
+							</stringFilterStatement>
+							<stringFilterStatement>
+								<fieldName>identifier</fieldName>
+								<operator>matches</operator>
+								<fieldValue>(?i)[\d\D]*OPERATION_CONTEXT [\d\D]*METRO_NOKIA_ILB alarm_object [\d\D]*</fieldValue>
+							</stringFilterStatement>				
+						</anyCondition>
+						<stringFilterStatement>
+							<fieldName>perceivedSeverity</fieldName>
+							<operator>isEqual</operator>
+							<fieldValue>CRITICAL</fieldValue>
+						</stringFilterStatement>
+					
+						<stringFilterStatement>
+              				<fieldName>additionalText</fieldName>  
+              				<operator>doesNotContain</operator>
+              				<fieldValue>@ZEnd=@</fieldValue>
+       					</stringFilterStatement>
+       					
+						<!-- In case of Outage -->
+						<anyCondition>
+							<notCondition>
+								<isPresentFilterStatement>
+									<fieldName>changeId</fieldName>
+								</isPresentFilterStatement>
+							</notCondition>
+							<notCondition>
+								<stringFilterStatement>
+									<fieldName>changeId</fieldName>
+									<operator>matches</operator>
+									<fieldValue>\S+</fieldValue>
+								</stringFilterStatement>
+							</notCondition>
+						</anyCondition>					
+						<!-- Exclude all PA alarms -->
+						<notCondition>
+							<stringFilterStatement>
+								<fieldName>userText</fieldName>
+								<operator>matches</operator>
+								<fieldValue><![CDATA[(?s).*<action>UCA EBC .*</action><trigger>.*</trigger><group>.*</group>.*]]></fieldValue>
+							</stringFilterStatement>
+						</notCondition>
+					</allCondition>
+				</anyCondition>
+			</anyCondition>
+			
+			<!-- Sub Alarm -->
+			<anyCondition tag="PATTERN_SUBALARM">
+				<anyCondition
+					tag="SubAlarm
+					,Customized.Mapper.AEnd_From=retrieveNokiaAEndFrom
+	                ,Customized.Mapper.ZEnd_To=retrieveNokiaZEndTo">
+					<allCondition>
+					<stringFilterStatement>
+									<fieldName>additionalText</fieldName>
+									<operator>doesNotContain</operator>
+									<fieldValue>NLOD</fieldValue>
+						</stringFilterStatement>
+						<stringFilterStatement>
+									<fieldName>additionalText</fieldName>
+									<operator>doesNotContain</operator>
+									<fieldValue>TEST</fieldValue>
+						</stringFilterStatement>
+						<!-- In case of Outage -->
+						<anyCondition>
+							<notCondition>
+								<isPresentFilterStatement>
+									<fieldName>changeId</fieldName>
+								</isPresentFilterStatement>
+							</notCondition>
+							<notCondition>
+								<stringFilterStatement>
+									<fieldName>changeId</fieldName>
+									<operator>matches</operator>
+									<fieldValue>\S+</fieldValue>
+								</stringFilterStatement>
+							</notCondition>
+						</anyCondition>	
+						<anyCondition>
+							<stringFilterStatement>
+								<fieldName>alarmName</fieldName>
+								<operator>isEqual</operator>
+								<fieldValue>APRLINE</fieldValue>
+							</stringFilterStatement>
+							<stringFilterStatement>
+								<fieldName>alarmName</fieldName>
+								<operator>isEqual</operator>
+								<fieldValue>LOS</fieldValue>
+							</stringFilterStatement>				
+						</anyCondition>
+						<stringFilterStatement>
+              				<fieldName>additionalText</fieldName>  
+              				<operator>doesNotContain</operator>
+              				<fieldValue>@ZEnd=@</fieldValue>
+       					</stringFilterStatement>
+						<notCondition>
+							<stringFilterStatement>
+								<fieldName>userText</fieldName>
+								<operator>matches</operator>
+								<fieldValue><![CDATA[(?s).*<action>UCA EBC .*</action><trigger>.*</trigger><group>.*</group>.*]]></fieldValue>
+							</stringFilterStatement>
+						</notCondition>
+					</allCondition>
+					
+					
+					
+				</anyCondition>
+			</anyCondition>
+
+			<anyCondition tag="PATTERN_ProblemAlarms">
+				<anyCondition tag="ProblemAlarm">
+					<allCondition>
+						<stringFilterStatement>
+							<fieldName>userText</fieldName>
+							<operator>matches</operator>
+							<fieldValue><![CDATA[(?s).*<trigger>.*</trigger><group><p>Problem_Tx_NOKIA_FiberCut</p>.*</group>.*]]></fieldValue>
+						</stringFilterStatement>
+					</allCondition>
+				</anyCondition>
+			</anyCondition>
+		</anyCondition>
+	</topFilter>
+
+</filters>
